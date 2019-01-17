@@ -27,7 +27,7 @@ public class TrapsGenerator : MonoBehaviour {
 			Trap trap = trap_obj.GetComponentInChildren<Trap>();
 			if (trap != null)
 			{
-				traps.Add(new TrapInfo(trap.height, trap.width, trap_obj.name, trap_obj));
+				traps.Add(new TrapInfo(trap_obj.name, trap_obj));
 			}
 		}
 
@@ -123,7 +123,8 @@ public class TrapsGenerator : MonoBehaviour {
 			{
 				rotation *= Quaternion.Euler(0, 90, 0);
 			}
-			Instantiate(trap_info.prefab, new Vector3(trap_info.pos_x, 0, trap_info.pos_y + offset) * space_size, rotation);
+			Trap new_trap = Instantiate(trap_info.prefab, new Vector3(trap_info.pos_x, 0, trap_info.pos_y + offset) * space_size, rotation).GetComponentInChildren<Trap>();
+			new_trap.IncrementDirection(trap_info.rotation);
 		}
 		PrintCorridor();
 	}
@@ -162,26 +163,27 @@ public class TrapsGenerator : MonoBehaviour {
 
 		public GameObject prefab;
 
-		public TrapInfo(int height, int width, string name, GameObject prefab)
+		public TrapInfo(string name, GameObject prefab)
 		{
 			this.name = name;
 			this.prefab = prefab;
 
 			rotation = Random.Range(0, 4);
-			rotation = 0;
+//			rotation = 0;
+			Trap base_trap = prefab.GetComponentInChildren<Trap>();
 			if(rotation % 2 == 0)
 			{
-				this.height = height;
-				this.width = width;
+				this.height = base_trap.height;
+				this.width = base_trap.width;
 			}
 			else
 			{
 				//switch width and height for 90 degree rotations, in order to make everything work when the trap is expanded.
-				this.height = width;
-				this.width = height;
+				this.height = base_trap.width;
+				this.width = base_trap.height;
 			}
 		}
-		public TrapInfo(TrapInfo blueprint, int pos_x, int pos_y) : this(blueprint.height, blueprint.width, blueprint.name, blueprint.prefab)
+		public TrapInfo(TrapInfo blueprint, int pos_x, int pos_y) : this(blueprint.name, blueprint.prefab)
 		{
 			this.pos_x = pos_x;
 			this.pos_y = pos_y;

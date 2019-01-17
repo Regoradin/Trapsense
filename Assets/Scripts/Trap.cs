@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,12 +8,24 @@ public class Trap : MonoBehaviour {
 	public enum Direction
 	{
 		None,
-		Left,
-		Right,
 		Forward,
-		Back
+		Left,
+		Back,
+		Right
 	}
 	public Direction direction;
+
+	public void IncrementDirection(int rotation)
+	{
+		int new_direction = (int)direction + rotation;
+
+		while(!Enum.IsDefined(typeof(Direction), new_direction)){
+			new_direction -= 4;
+		}
+
+		direction = (Direction)new_direction;
+		
+	}
 
 	private Animator anim;
 	public int damage;
