@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 
@@ -18,6 +19,11 @@ public class Player : MonoBehaviour {
 	public TrapsGenerator trap_gen;
 	private int corridor_gen_distance;
 
+	public delegate void Tick(string input);
+	public event Tick PlayerTickEvent;
+
+	public Text health_text;
+
 	private void Awake()
 	{
 		player = this;
@@ -30,8 +36,9 @@ public class Player : MonoBehaviour {
 
 	private void Start()
 	{
-	Timekeeper.timekeeper.TickEvent += Move;
-	health = max_health;
+		Timekeeper.timekeeper.TickEvent += Move;
+		health = max_health;
+		health_text.text = health.ToString();
 	}
 
 	public void Move (string input)
@@ -54,13 +61,29 @@ public class Player : MonoBehaviour {
 			progress--;
 		}
 
-		anim.SetTrigger(input);
+		if (input != "Wait")
+		{
+			anim.SetTrigger(input);
+		}
+		else
+		{
+			EndMove();
+		}
+	}
+
+	public void EndMove()
+	{
+		if(PlayerTickEvent != null)
+		{
+			PlayerTickEvent("");
+		}
 	}
 
 
 	public void Damage(int damage)
 	{
 		health -= damage;
+		health_text.text = health.ToString();
 	}
 
 

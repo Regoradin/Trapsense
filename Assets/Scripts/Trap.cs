@@ -21,7 +21,8 @@ public class Trap : MonoBehaviour {
 
 	private void Start()
 	{
-		Timekeeper.timekeeper.TickEvent += Tick;
+		//		Timekeeper.timekeeper.TickEvent	+= Tick;
+		Player.player.PlayerTickEvent += Tick;
 		anim = GetComponent<Animator>();
 		RandomizeState();
 	}

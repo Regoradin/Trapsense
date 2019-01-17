@@ -14,7 +14,6 @@ public class TrapsGenerator : MonoBehaviour {
 	private TrapInfo[,] corridor;
 	private List<TrapInfo> traps; //Almost an inventory of traps to be replicated throughout the corridor
 
-	private HashSet<TrapInfo> placed_traps;
 
 	public List<GameObject> trap_prefabs;
 
@@ -22,7 +21,6 @@ public class TrapsGenerator : MonoBehaviour {
 	{
 		corridor = new TrapInfo[corridor_width, corridor_height];
 		traps = new List<TrapInfo>();
-		placed_traps = new HashSet<TrapInfo>();
 
 		foreach(GameObject trap_obj in trap_prefabs)
 		{
@@ -42,7 +40,10 @@ public class TrapsGenerator : MonoBehaviour {
 	/// <param name="offset">Distance forward from the origin in spaces</param>
 	public void CreateCorridor(int offset = 0)
 	{
-		Debug.Log("Creating Corridor");
+
+		HashSet<TrapInfo> placed_traps = new HashSet<TrapInfo>();
+
+		Debug.Log("Creating	Corridor");
 		//Populates the corridor with random traps
 		for (int x = 0; x < corridor.GetLength(0); x++)
 		{
@@ -72,7 +73,7 @@ public class TrapsGenerator : MonoBehaviour {
 				{
 					if (x < corridor.GetLength(0) && y < corridor.GetLength(1))
 					{
-						if (!trap_infos.Contains(corridor[x, y]) && corridor[x, y] != null)
+						if (!trap_infos.Contains(corridor[x, y]) && corridor[x, y] != null) //i.e. there is an already expanded trap there
 						{
 							has_space = false;
 						}
@@ -117,9 +118,14 @@ public class TrapsGenerator : MonoBehaviour {
 		TrapInfo[] traps_to_build = trapset.ToArray();
 		foreach(TrapInfo trap_info in traps_to_build)
 		{
-			Instantiate(trap_info.prefab, new Vector3(trap_info.pos_x, 0, trap_info.pos_y + offset) * space_size, Quaternion.identity);
+			Quaternion rotation = Quaternion.identity;
+			for(int i = 0; i < trap_info.rotation; i++)
+			{
+				rotation *= Quaternion.Euler(0, 90, 0);
+			}
+			Instantiate(trap_info.prefab, new Vector3(trap_info.pos_x, 0, trap_info.pos_y + offset) * space_size, rotation);
 		}
-
+		PrintCorridor();
 	}
 
 	private void PrintCorridor()
@@ -149,6 +155,7 @@ public class TrapsGenerator : MonoBehaviour {
 	{
 		public int height;
 		public int width;
+		public int rotation;
 		public string name;
 
 		public int pos_x, pos_y;
@@ -157,10 +164,22 @@ public class TrapsGenerator : MonoBehaviour {
 
 		public TrapInfo(int height, int width, string name, GameObject prefab)
 		{
-			this.height = height;
-			this.width = width;
 			this.name = name;
 			this.prefab = prefab;
+
+			rotation = Random.Range(0, 4);
+			rotation = 0;
+			if(rotation % 2 == 0)
+			{
+				this.height = height;
+				this.width = width;
+			}
+			else
+			{
+				//switch width and height for 90 degree rotations, in order to make everything work when the trap is expanded.
+				this.height = width;
+				this.width = height;
+			}
 		}
 		public TrapInfo(TrapInfo blueprint, int pos_x, int pos_y) : this(blueprint.height, blueprint.width, blueprint.name, blueprint.prefab)
 		{
