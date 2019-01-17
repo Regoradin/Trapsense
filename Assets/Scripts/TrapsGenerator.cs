@@ -67,11 +67,11 @@ public class TrapsGenerator : MonoBehaviour {
 			TrapInfo trap = trap_infos[trap_infos.Count - 1];
 
 			bool has_space = true;
-			for (int x = trap.pos_x; x < trap.pos_x + trap.width; x++)
+			for (int x = trap.pos_x; Mathf.Abs(x - trap.pos_x) < Mathf.Abs(trap.width); x += (int)Mathf.Sign(trap.width))
 			{
-				for (int y = trap.pos_y; y < trap.pos_y + trap.height; y++)
+				for (int y = trap.pos_y; Mathf.Abs(y - trap.pos_y) < Mathf.Abs(trap.height); y += (int)Mathf.Sign(trap.height))
 				{
-					if (x < corridor.GetLength(0) && y < corridor.GetLength(1))
+					if (x >= 0 && x < corridor.GetLength(0) && y >= 0 && y < corridor.GetLength(1))
 					{
 						if (!trap_infos.Contains(corridor[x, y]) && corridor[x, y] != null) //i.e. there is an already expanded trap there
 						{
@@ -87,14 +87,15 @@ public class TrapsGenerator : MonoBehaviour {
 			//Expands itself if there is space for it, otherwise removes itself
 			if (has_space)
 			{
-				for (int x = trap.pos_x; x < trap.pos_x + trap.width; x++)
+				for (int x = trap.pos_x; Mathf.Abs(x - trap.pos_x) < Mathf.Abs(trap.width); x += (int)Mathf.Sign(trap.width))
 				{
-					for (int y = trap.pos_y; y < trap.pos_y + trap.height; y++)
+					for (int y = trap.pos_y; Mathf.Abs(y - trap.pos_y) < Mathf.Abs(trap.height); y += (int)Mathf.Sign(trap.height))
 					{
-						if (x < corridor.GetLength(0) && y < corridor.GetLength(1))
+						if(corridor[x, y] != trap)
 						{
-							corridor[x, y] = trap;
+							trap_infos.Remove(corridor[x, y]);
 						}
+						corridor[x, y] = trap;
 					}
 				}
 			}
@@ -171,16 +172,25 @@ public class TrapsGenerator : MonoBehaviour {
 			rotation = Random.Range(0, 4);
 //			rotation = 0;
 			Trap base_trap = prefab.GetComponentInChildren<Trap>();
-			if(rotation % 2 == 0)
+			if(rotation == 0)
 			{
 				this.height = base_trap.height;
 				this.width = base_trap.width;
 			}
-			else
+			else if(rotation == 1)
 			{
-				//switch width and height for 90 degree rotations, in order to make everything work when the trap is expanded.
-				this.height = base_trap.width;
+				this.height = -base_trap.width;
 				this.width = base_trap.height;
+			}
+			else if(rotation == 2)
+			{
+				this.height = -base_trap.height;
+				this.width = -base_trap.width;
+			}
+			else if(rotation == 3)
+			{
+				this.height = base_trap.width;
+				this.width = -base_trap.height;
 			}
 		}
 		public TrapInfo(TrapInfo blueprint, int pos_x, int pos_y) : this(blueprint.name, blueprint.prefab)

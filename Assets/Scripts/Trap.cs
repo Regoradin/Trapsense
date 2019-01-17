@@ -9,9 +9,9 @@ public class Trap : MonoBehaviour {
 	{
 		None,
 		Forward,
-		Left,
+		Right,
 		Back,
-		Right
+		Left
 	}
 	public Direction direction;
 
@@ -61,7 +61,7 @@ public class Trap : MonoBehaviour {
 	private void RandomizeState()
 	{
 		//higher number here will do more iterations, producing a wider range of results at the cost of a longer setup time
-		if (Random.Range(0f, 1f) < .85f)
+		if (UnityEngine.Random.Range(0f, 1f) < .85f)
 		{
 			if (anim != null)
 			{

@@ -1144,7 +1144,7 @@ MonoBehaviour:
   corridor_height: 50
   corridor_width: 10
   space_size: 1
-  trap_density: 0.444
+  trap_density: 0.589
   trap_prefabs:
   - {fileID: 381731951, guid: 1c85cc16aa29ada49b8468d43741e7b9, type: 3}
   - {fileID: 1394688061341484, guid: c41e862aec5771b4cbde61b6914a0b2f, type: 3}
