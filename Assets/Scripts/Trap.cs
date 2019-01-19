@@ -17,20 +17,25 @@ public class Trap : MonoBehaviour {
 
 	public void IncrementDirection(int rotation)
 	{
-		int new_direction = (int)direction + rotation;
+		if (direction != 0)
+		{
+			int new_direction = (int)direction + rotation;
 
-		while(!Enum.IsDefined(typeof(Direction), new_direction)){
-			new_direction -= 4;
+			while (!Enum.IsDefined(typeof(Direction), new_direction))
+			{
+				new_direction -= 4;
+			}
+
+			direction = (Direction)new_direction;
 		}
-
-		direction = (Direction)new_direction;
-		
 	}
 
 	private Animator anim;
 	public int damage;
 
 	public int height, width;
+	public bool needs_edge;
+
 
 	private void Start()
 	{

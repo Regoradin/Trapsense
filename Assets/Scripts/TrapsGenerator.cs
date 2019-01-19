@@ -66,7 +66,17 @@ public class TrapsGenerator : MonoBehaviour {
 		{
 			TrapInfo trap = trap_infos[trap_infos.Count - 1];
 
+			
 			bool has_space = true;
+			//checks if its origin is on the edge if required
+			if (trap.needs_edge)
+			{
+				if (trap.pos_x != 0 && trap.pos_x != corridor.GetLength(0) -1)
+				{
+					has_space = false;
+				}
+			}
+			//checks if it has space to expand in the correct direction that doesn't get in the way of anything.
 			for (int x = trap.pos_x; Mathf.Abs(x - trap.pos_x) < Mathf.Abs(trap.width); x += (int)Mathf.Sign(trap.width))
 			{
 				for (int y = trap.pos_y; Mathf.Abs(y - trap.pos_y) < Mathf.Abs(trap.height); y += (int)Mathf.Sign(trap.height))
@@ -84,6 +94,8 @@ public class TrapsGenerator : MonoBehaviour {
 					}
 				}
 			}
+
+
 			//Expands itself if there is space for it, otherwise removes itself
 			if (has_space)
 			{
@@ -127,7 +139,6 @@ public class TrapsGenerator : MonoBehaviour {
 			Trap new_trap = Instantiate(trap_info.prefab, new Vector3(trap_info.pos_x, 0, trap_info.pos_y + offset) * space_size, rotation).GetComponentInChildren<Trap>();
 			new_trap.IncrementDirection(trap_info.rotation);
 		}
-		PrintCorridor();
 	}
 
 	private void PrintCorridor()
@@ -159,6 +170,7 @@ public class TrapsGenerator : MonoBehaviour {
 		public int width;
 		public int rotation;
 		public string name;
+		public bool needs_edge;
 
 		public int pos_x, pos_y;
 
@@ -166,13 +178,15 @@ public class TrapsGenerator : MonoBehaviour {
 
 		public TrapInfo(string name, GameObject prefab)
 		{
+			Trap base_trap = prefab.GetComponentInChildren<Trap>();
+
 			this.name = name;
 			this.prefab = prefab;
+			this.needs_edge = base_trap.needs_edge;
 
 			rotation = Random.Range(0, 4);
-//			rotation = 0;
-			Trap base_trap = prefab.GetComponentInChildren<Trap>();
-			if(rotation == 0)
+
+			if (rotation == 0)
 			{
 				this.height = base_trap.height;
 				this.width = base_trap.width;
