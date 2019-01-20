@@ -184,7 +184,17 @@ public class TrapsGenerator : MonoBehaviour {
 			this.prefab = prefab;
 			this.needs_edge = base_trap.needs_edge;
 
-			rotation = Random.Range(0, 4);
+			List<int> allowed_rotations = new List<int>();
+			if (base_trap.zero)
+				allowed_rotations.Add(0);
+			if (base_trap.ninety)
+				allowed_rotations.Add(1);
+			if (base_trap.one_eighty)
+				allowed_rotations.Add(2);
+			if (base_trap.two_seventy)
+				allowed_rotations.Add(3);
+
+			rotation = allowed_rotations[Random.Range(0, allowed_rotations.Count)];
 
 			if (rotation == 0)
 			{

@@ -36,6 +36,13 @@ public class Trap : MonoBehaviour {
 	public int height, width;
 	public bool needs_edge;
 
+	//This is gross and horrible for a variety of reasons and I'm very sorry to every CS teacher I've ever had
+	[Header("Allowed Rotations")]
+	public bool zero = true;
+	public bool ninety = true;
+	public bool one_eighty = true;
+	public bool two_seventy = true;
+
 
 	private void Start()
 	{
@@ -82,7 +89,6 @@ public class Trap : MonoBehaviour {
 		if(player != null)
 		{
 			player.Damage(damage);
-			Debug.Log(name + " contacting player and moving " + direction.ToString());
 			if (direction.ToString() != "None")
 			{
 				//Calling player.move() directly will move the player without causing traps to progress another tick

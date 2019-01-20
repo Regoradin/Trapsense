@@ -122,8 +122,8 @@ GameObject:
   m_Component:
   - component: {fileID: 381731953}
   - component: {fileID: 381731954}
-  - component: {fileID: 381731952}
   - component: {fileID: 6895096376870631245}
+  - component: {fileID: 381731952}
   m_Layer: 0
   m_Name: Axe 2
   m_TagString: Untagged
@@ -167,24 +167,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &381731952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 381731951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f8458332f42d6a48a16f166abb56324, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  direction: 2
-  damage: 2
-  height: 4
-  width: 1
-  needs_edge: 1
-  possible_rotations: 15
 --- !u!54 &6895096376870631245
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -201,6 +183,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &381731952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381731951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f8458332f42d6a48a16f166abb56324, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: 2
+  damage: 2
+  height: 4
+  width: 1
+  needs_edge: 0
+  zero: 1
+  ninety: 1
+  one_eighty: 1
+  two_seventy: 1
 --- !u!1 &879546577
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,8 +246,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 0.5, z: 0.7}
-  m_Center: {x: -2, y: 0, z: 0}
+  m_Size: {x: 3.5, y: 0.5, z: 0.7}
+  m_Center: {x: -1.75, y: 0, z: 0}
 --- !u!1 &899659422
 GameObject:
   m_ObjectHideFlags: 0

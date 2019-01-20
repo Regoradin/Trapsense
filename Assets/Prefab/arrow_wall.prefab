@@ -805,6 +805,10 @@ MonoBehaviour:
   height: 5
   width: 3
   needs_edge: 1
+  zero: 1
+  ninety: 0
+  one_eighty: 1
+  two_seventy: 0
 --- !u!1 &2133195739
 GameObject:
   m_ObjectHideFlags: 0
