@@ -88,6 +88,7 @@ public class Trap : MonoBehaviour {
 		Player player = other.GetComponent<Player>();
 		if(player != null)
 		{
+			Debug.Log(name + "Hitting player");
 			player.Damage(damage);
 			if (direction.ToString() != "None")
 			{
