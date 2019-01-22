@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9188119321518412173}
   - component: {fileID: 712923005}
   m_Layer: 0
-  m_Name: wheel_new
+  m_Name: Wheel_new
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,9 +89,9 @@ MonoBehaviour:
   width: 6
   needs_edge: 0
   zero: 1
-  ninety: 1
-  one_eighty: 1
-  two_seventy: 1
+  ninety: 0
+  one_eighty: 0
+  two_seventy: 0
 --- !u!1 &5743519406489431824
 GameObject:
   m_ObjectHideFlags: 0

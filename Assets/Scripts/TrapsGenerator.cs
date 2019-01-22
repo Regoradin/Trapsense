@@ -11,8 +11,7 @@ public class TrapsGenerator : MonoBehaviour {
 	[Range(0,1)]
 	public float trap_density;
 
-	private TrapInfo[,] corridor;
-	private List<TrapInfo> traps; //Almost an inventory of traps to be replicated throughout the corridor
+	private List<TrapInfo> traps; //Stores an inventory of TrapInfos created from trap_prefabs
 
 
 	public List<GameObject> trap_prefabs;
@@ -20,7 +19,6 @@ public class TrapsGenerator : MonoBehaviour {
 
 	private void Start()
 	{
-		corridor = new TrapInfo[corridor_width, corridor_height];
 		traps = new List<TrapInfo>();
 
 		foreach(GameObject trap_obj in trap_prefabs)
@@ -41,6 +39,7 @@ public class TrapsGenerator : MonoBehaviour {
 	/// <param name="offset">Distance forward from the origin in spaces</param>
 	public void CreateCorridor(int offset = 0)
 	{
+		TrapInfo[,] corridor = new TrapInfo[corridor_width, corridor_height];
 
 		HashSet<TrapInfo> placed_traps = new HashSet<TrapInfo>();
 
@@ -62,8 +61,9 @@ public class TrapsGenerator : MonoBehaviour {
 
 		//Clears overlapping traps
 		//trap_infos tracks remaining traps, which are the one that haven't been expanded and are ok to clear for other traps.
-		List<TrapInfo> trap_infos = placed_traps.ToList();
-		while(trap_infos.Count != 0)
+		List<TrapInfo> trap_infos = placed_traps.ToList(); //List of traps that have been orignally seeded into the corridor
+		HashSet<TrapInfo> trapset = new HashSet<TrapInfo>(); //Set of traps that have been checked and expanded and will actually be built
+		while (trap_infos.Count != 0)
 		{
 			TrapInfo trap = trap_infos[trap_infos.Count - 1];
 
@@ -84,7 +84,7 @@ public class TrapsGenerator : MonoBehaviour {
 				{
 					if (x >= 0 && x < corridor.GetLength(0) && y >= 0 && y < corridor.GetLength(1))
 					{
-						if (!trap_infos.Contains(corridor[x, y]) && corridor[x, y] != null) //i.e. there is an already expanded trap there
+						if (trapset.Contains(corridor[x, y])) //i.e. there is an already expanded trap there
 						{
 							has_space = false;
 						}
@@ -93,6 +93,7 @@ public class TrapsGenerator : MonoBehaviour {
 					{
 						has_space = false;
 					}
+
 				}
 			}
 
@@ -100,6 +101,7 @@ public class TrapsGenerator : MonoBehaviour {
 			//Expands itself if there is space for it, otherwise removes itself
 			if (has_space)
 			{
+				trapset.Add(trap);
 				for (int x = trap.pos_x; Mathf.Abs(x - trap.pos_x) < Mathf.Abs(trap.width); x += (int)Mathf.Sign(trap.width))
 				{
 					for (int y = trap.pos_y; Mathf.Abs(y - trap.pos_y) < Mathf.Abs(trap.height); y += (int)Mathf.Sign(trap.height))
@@ -114,14 +116,18 @@ public class TrapsGenerator : MonoBehaviour {
 			}
 			else
 			{
-				corridor[trap.pos_x, trap.pos_y] = null;
+				//if nothing else has expanded to take its space, nullify itself.
+				if (corridor[trap.pos_x, trap.pos_y] == trap)
+				{
+					corridor[trap.pos_x, trap.pos_y] = null;
+				}
 			}
+
 			trap_infos.Remove(trap);
 		}
 
 
 		//Actually puts traps objects in the world.
-		HashSet<TrapInfo> trapset = new HashSet<TrapInfo>();
 		foreach(TrapInfo trap_info in corridor)
 		{
 			if (trap_info != null)
@@ -152,10 +158,10 @@ public class TrapsGenerator : MonoBehaviour {
 			}
 		}
 
-		PrintCorridor();
+		PrintCorridor(corridor);
 	}
 
-	private void PrintCorridor()
+	private void PrintCorridor(TrapInfo[,] corridor)
 	{
 		string result = "";
 		for(int x = 0; x < corridor.GetLength(0); x++)
@@ -165,7 +171,7 @@ public class TrapsGenerator : MonoBehaviour {
 				result += "|";
 				if (corridor[x, y] != null)
 				{
-					result += corridor[x, y].name;
+					result += corridor[x, y].name[0];
 				}
 				else
 				{

@@ -245,6 +245,6 @@ MonoBehaviour:
   width: 1
   needs_edge: 0
   zero: 1
-  ninety: 1
-  one_eighty: 1
-  two_seventy: 1
+  ninety: 0
+  one_eighty: 0
+  two_seventy: 0
