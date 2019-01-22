@@ -668,16 +668,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2cb27838d7c9804db87bd15ae69a00d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  corridor_height: 4
+  corridor_height: 50
   corridor_width: 10
   space_size: 1
-  trap_density: 0.424
+  trap_density: 1
   trap_prefabs:
   - {fileID: 1763730127, guid: 3866e2a48f13cbd4abb3034e008b7792, type: 3}
   - {fileID: 381731951, guid: 1c85cc16aa29ada49b8468d43741e7b9, type: 3}
   - {fileID: 712923004, guid: 15e9ad49127c885439fef0dcd5deecf3, type: 3}
   - {fileID: 1981166605, guid: c41e862aec5771b4cbde61b6914a0b2f, type: 3}
-  floor: {fileID: 7227549171500979544, guid: 52dd5486d6fbb704bbbfe74b50d067ee, type: 3}
+  floor_prefabs:
+  - {fileID: 7227549171500979544, guid: 52dd5486d6fbb704bbbfe74b50d067ee, type: 3}
+  - {fileID: 1901920556074651347, guid: 69322c106db6c1747b925f2e1a9ceb67, type: 3}
 --- !u!4 &1479238786
 Transform:
   m_ObjectHideFlags: 0

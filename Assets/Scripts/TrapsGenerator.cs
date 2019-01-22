@@ -16,7 +16,7 @@ public class TrapsGenerator : MonoBehaviour {
 
 
 	public List<GameObject> trap_prefabs;
-	public GameObject floor;
+	public List<GameObject> floor_prefabs;
 
 	private void Start()
 	{
@@ -147,9 +147,12 @@ public class TrapsGenerator : MonoBehaviour {
 			for(int y = 0; y < corridor.GetLength(1); y++)
 			{
 				//Rotation is to cancel out the axis mismatch with blender.
+				GameObject floor = floor_prefabs[Random.Range(0, floor_prefabs.Count())];
 				Instantiate(floor, new Vector3(x, 0, y + offset), Quaternion.Euler(Vector3.right * -90));
 			}
 		}
+
+		PrintCorridor();
 	}
 
 	private void PrintCorridor()

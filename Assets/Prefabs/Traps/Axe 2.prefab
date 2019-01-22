@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f8458332f42d6a48a16f166abb56324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 2
+  direction: 0
   damage: 2
   height: 4
   width: 1
