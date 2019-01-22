@@ -16,6 +16,7 @@ public class TrapsGenerator : MonoBehaviour {
 
 	public List<GameObject> trap_prefabs;
 	public List<GameObject> floor_prefabs;
+	public List<GameObject> wall_prefabs;
 
 	private void Start()
 	{
@@ -158,7 +159,18 @@ public class TrapsGenerator : MonoBehaviour {
 			}
 		}
 
-		PrintCorridor(corridor);
+		//Creating Walls
+		for(int y = 0; y < corridor.GetLength(1); y++)
+		{
+			GameObject wall = wall_prefabs[Random.Range(0, wall_prefabs.Count())];
+			Instantiate(wall, new Vector3(-1, 0, y + offset), Quaternion.Euler(Vector3.right * -90));
+
+			wall = wall_prefabs[Random.Range(0, wall_prefabs.Count())];
+			Instantiate(wall, new Vector3(corridor.GetLength(0), 0, y + offset), Quaternion.Euler(Vector3.right * -90 + Vector3.up * 180));
+
+		}
+
+
 	}
 
 	private void PrintCorridor(TrapInfo[,] corridor)

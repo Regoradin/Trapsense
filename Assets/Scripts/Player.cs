@@ -19,6 +19,8 @@ public class Player : MonoBehaviour {
 	public TrapsGenerator trap_gen;
 	private int corridor_gen_distance;
 
+	private int horizontal_coord = 4; //This is based off the starting position of the player relative to the corridor generation, and will almost certainly need to be changed
+
 	public delegate void Tick(string input);
 	public event Tick PlayerTickEvent;
 
@@ -44,6 +46,8 @@ public class Player : MonoBehaviour {
 
 	public void Move (string input)
 	{
+		bool is_valid_move = true;
+
 		if(input == "Forward")
 		{
 		//	controller.Move(Vector3.forward * move_distance);
@@ -62,7 +66,26 @@ public class Player : MonoBehaviour {
 			progress--;
 		}
 
-		if (input != "Wait")
+		if(input == "Left")
+		{
+			horizontal_coord -= 1;
+			if(horizontal_coord < 0)
+			{
+				horizontal_coord += 1;
+				is_valid_move = false;
+			}
+		}
+		if(input == "Right")
+		{
+			horizontal_coord += 1;
+			if(horizontal_coord >= trap_gen.corridor_width)
+			{
+				horizontal_coord -= 1;
+				is_valid_move = false;
+			}
+		}
+
+		if (input != "Wait" && is_valid_move)
 		{
 			anim.SetTrigger(input);
 		}
