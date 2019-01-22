@@ -14,8 +14,8 @@ public class Player : MonoBehaviour {
 	public int max_health;
 	public int health;
 
-	public int progress = 0;
-	public int max_progress = 0;
+	public int progress = 1;
+	public int max_progress = 1;
 	public TrapsGenerator trap_gen;
 	private int corridor_gen_distance;
 
@@ -39,6 +39,7 @@ public class Player : MonoBehaviour {
 		Timekeeper.timekeeper.TickEvent += Move;
 		health = max_health;
 		health_text.text = health.ToString();
+
 	}
 
 	public void Move (string input)

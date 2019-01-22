@@ -16,6 +16,7 @@ public class TrapsGenerator : MonoBehaviour {
 
 
 	public List<GameObject> trap_prefabs;
+	public GameObject floor;
 
 	private void Start()
 	{
@@ -43,7 +44,7 @@ public class TrapsGenerator : MonoBehaviour {
 
 		HashSet<TrapInfo> placed_traps = new HashSet<TrapInfo>();
 
-		Debug.Log("Creating	Corridor");
+		Debug.Log("Creating	Corridor " + offset);
 		//Populates the corridor with random traps
 		for (int x = 0; x < corridor.GetLength(0); x++)
 		{
@@ -138,6 +139,16 @@ public class TrapsGenerator : MonoBehaviour {
 			}
 			Trap new_trap = Instantiate(trap_info.prefab, new Vector3(trap_info.pos_x, 0, trap_info.pos_y + offset) * space_size, rotation).GetComponentInChildren<Trap>();
 			new_trap.IncrementDirection(trap_info.rotation);
+		}
+
+		//Creating Floor
+		for(int x = 0; x < corridor.GetLength(0); x++)
+		{
+			for(int y = 0; y < corridor.GetLength(1); y++)
+			{
+				//Rotation is to cancel out the axis mismatch with blender.
+				Instantiate(floor, new Vector3(x, 0, y + offset), Quaternion.Euler(Vector3.right * -90));
+			}
 		}
 	}
 
