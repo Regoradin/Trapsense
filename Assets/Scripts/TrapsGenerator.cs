@@ -155,7 +155,7 @@ public class TrapsGenerator : MonoBehaviour {
 			{
 				//Rotation is to cancel out the axis mismatch with blender.
 				GameObject floor = floor_prefabs[Random.Range(0, floor_prefabs.Count())];
-				Instantiate(floor, new Vector3(x, 0, y + offset), Quaternion.Euler(Vector3.right * -90));
+				Instantiate(floor, new Vector3(x, 0, y + offset), Quaternion.Euler(Vector3.right * -90 + Vector3.up * 90 * Random.Range(0, 4)));
 			}
 		}
 
