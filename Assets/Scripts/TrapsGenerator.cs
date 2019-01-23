@@ -4,6 +4,8 @@ using System.Linq;
 using UnityEngine;
 
 public class TrapsGenerator : MonoBehaviour {
+	public PickupGenerator pickup_gen;
+
 	public int corridor_height;
 	public int corridor_width;
 	public float space_size;
@@ -40,6 +42,8 @@ public class TrapsGenerator : MonoBehaviour {
 	/// <param name="offset">Distance forward from the origin in spaces</param>
 	public void CreateCorridor(int offset = 0)
 	{
+		pickup_gen.CreateCorridor(corridor_height, corridor_width, offset);
+
 		TrapInfo[,] corridor = new TrapInfo[corridor_width, corridor_height];
 
 		HashSet<TrapInfo> placed_traps = new HashSet<TrapInfo>();

@@ -154,7 +154,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 0.8113208, g: 0.52538, b: 0.43244928, a: 1}
+  m_Color: {r: 0.8584906, g: 0.3178387, b: 0.25511748, a: 1}
   m_Intensity: 4.5
   m_Range: 12
   m_SpotAngle: 30
@@ -200,8 +200,8 @@ MonoBehaviour:
   speed: 0.01
   brightness: 1
   color_flicker: 0.005
-  intensity_flicker_upper: 0.01
-  intensity_flicker_lower: -0.01
+  intensity_flicker_upper: 0.06
+  intensity_flicker_lower: -0.06
 --- !u!1 &112099433
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,8 +740,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1479238786}
   - component: {fileID: 1479238785}
+  - component: {fileID: 1479238787}
   m_Layer: 0
-  m_Name: TrapsGenerator
+  m_Name: CorridorGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -759,6 +760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2cb27838d7c9804db87bd15ae69a00d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickup_gen: {fileID: 1479238787}
   corridor_height: 50
   corridor_width: 10
   space_size: 1
@@ -787,6 +789,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1479238787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479238784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4d379968a410aa418b3287cf1fb0e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickup_density: 0.03
+  pickup: {fileID: 3416587833932203166, guid: 2d4d0af06cbde94488ad7a202031ce20, type: 3}
 --- !u!1 &1698302662
 GameObject:
   m_ObjectHideFlags: 0

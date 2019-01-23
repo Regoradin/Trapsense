@@ -15,35 +15,36 @@ public class Torch : MonoBehaviour
 
 	private Cubemap noise;
 	private Color[] pix;
-	private Light light;
+	private Light torch;
 
 	private float x_org = 1;
 	private float y_org = 1;
 
 	void Start()
 	{
-		light = GetComponent<Light>();
+		torch = GetComponent<Light>();
 
 		noise = new Cubemap(noise_width, TextureFormat.Alpha8, false);
-		light.cookie = noise;
+		torch.cookie = noise;
 
 		pix = new Color[noise_height * noise_width];
+
 	}
 
 	private void Update()
 	{
-		SetCookie();
+	//	SetCookie();
 		FlickerColor();
 	}
 
 	void FlickerColor()
 	{
-		light.color = new Color(
-			light.color.r + Random.Range(-color_flicker, color_flicker),
-			light.color.g + Random.Range(-color_flicker, color_flicker),
-			light.color.b + Random.Range(-color_flicker, color_flicker));
+		torch.color = new Color(
+			torch.color.r + Random.Range(-color_flicker, color_flicker),
+			torch.color.g + Random.Range(-color_flicker, color_flicker),
+			torch.color.b + Random.Range(-color_flicker, color_flicker));
 
-		light.intensity += Random.Range(intensity_flicker_lower, intensity_flicker_upper);
+		torch.intensity += Random.Range(intensity_flicker_lower, intensity_flicker_upper);
 	}
 
 	void SetCookie()
@@ -71,7 +72,7 @@ public class Torch : MonoBehaviour
 		y_org += speed;
 
 		noise.SetPixels(pix, CubemapFace.NegativeX);
-		noise.SetPixels(pix, CubemapFace.NegativeY);
+//		noise.SetPixels(pix, CubemapFace.NegativeY);
 		noise.SetPixels(pix, CubemapFace.NegativeZ);
 		noise.SetPixels(pix, CubemapFace.PositiveX);
 		noise.SetPixels(pix, CubemapFace.PositiveY);
