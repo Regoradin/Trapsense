@@ -101,6 +101,8 @@ public class Player : MonoBehaviour {
 		{
 			PlayerTickEvent("");
 		}
+		Debug.Log("Setting pos to " + horizontal_coord + " " + progress);
+		transform.position = new Vector3(horizontal_coord, 0, progress);
 	}
 
 
