@@ -802,7 +802,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickup_density: 0.03
-  pickup: {fileID: 3416587833932203166, guid: 2d4d0af06cbde94488ad7a202031ce20, type: 3}
+  pickups: []
 --- !u!1 &1698302662
 GameObject:
   m_ObjectHideFlags: 0
