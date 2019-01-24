@@ -108,6 +108,7 @@ public class Player : MonoBehaviour {
 	{
 		health -= damage;
 		health_text.text = health.ToString();
+		anim.SetTrigger("Damage");
 	}
 
 	public void Heal(int healing)
