@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
-	private float z_offset;
-	private float x_offset;
+	private float x_offset, y_offset, z_offset;
 	private Transform player;
 
 	private Vector3 velocity = Vector3.zero;
@@ -14,9 +13,9 @@ public class CameraController : MonoBehaviour {
 	private void Start()
 	{
 		player = Player.player.transform;
-		//transform.position = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
-		z_offset = transform.position.z - player.position.z;
+
 		x_offset = transform.position.x - player.position.x;
+		z_offset = transform.position.z - player.position.z;
 	}
 
 	private void Update()

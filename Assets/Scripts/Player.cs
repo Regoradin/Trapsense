@@ -25,6 +25,7 @@ public class Player : MonoBehaviour {
 	public event Tick PlayerTickEvent;
 
 	public Text health_text;
+	public AnimationClip idle_clip;
 
 	private void Awake()
 	{
@@ -44,54 +45,59 @@ public class Player : MonoBehaviour {
 
 	}
 
-	public void Move (string input)
+	public void Move(string input)
 	{
-		bool is_valid_move = true;
-
-		if(input == "Forward")
+		//prevents processing of move inputs while an animation is playing
+		if (anim.GetCurrentAnimatorClipInfo(0)[0].clip == idle_clip)
 		{
-		//	controller.Move(Vector3.forward * move_distance);
-			progress++;
-			if(progress > max_progress)
+
+			bool is_valid_move = true;
+
+			if (input == "Forward")
 			{
-				max_progress = progress;
-				if(max_progress % corridor_gen_distance == 1) //Generates next segment of corridor one space into the current segment
+				//	controller.Move(Vector3.forward * move_distance);
+				progress++;
+				if (progress > max_progress)
 				{
-					trap_gen.CreateCorridor(max_progress + corridor_gen_distance);
+					max_progress = progress;
+					if (max_progress % corridor_gen_distance == 1) //Generates next segment of corridor one space into the current segment
+					{
+						trap_gen.CreateCorridor(max_progress + corridor_gen_distance - 1);
+					}
 				}
 			}
-		}
-		if(input == "Back")
-		{
-			progress--;
-		}
-
-		if(input == "Left")
-		{
-			horizontal_coord -= 1;
-			if(horizontal_coord < 0)
+			if (input == "Back")
 			{
-				horizontal_coord += 1;
-				is_valid_move = false;
+				progress--;
 			}
-		}
-		if(input == "Right")
-		{
-			horizontal_coord += 1;
-			if(horizontal_coord >= trap_gen.corridor_width)
+
+			if (input == "Left")
 			{
 				horizontal_coord -= 1;
-				is_valid_move = false;
+				if (horizontal_coord < 0)
+				{
+					horizontal_coord += 1;
+					is_valid_move = false;
+				}
 			}
-		}
+			if (input == "Right")
+			{
+				horizontal_coord += 1;
+				if (horizontal_coord >= trap_gen.corridor_width)
+				{
+					horizontal_coord -= 1;
+					is_valid_move = false;
+				}
+			}
 
-		if (input != "Wait" && is_valid_move)
-		{
-			anim.SetTrigger(input);
-		}
-		else
-		{
-			EndMove();
+			if (input != "Wait" && is_valid_move)
+			{
+				anim.SetTrigger(input);
+			}
+			else
+			{
+				EndMove();
+			}
 		}
 	}
 
@@ -101,7 +107,6 @@ public class Player : MonoBehaviour {
 		{
 			PlayerTickEvent("");
 		}
-		Debug.Log("Setting pos to " + horizontal_coord + " " + progress);
 		transform.position = new Vector3(horizontal_coord, 0, progress);
 	}
 
