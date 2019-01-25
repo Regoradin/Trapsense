@@ -121,10 +121,11 @@ public class Player : MonoBehaviour {
 	public void Heal(int healing)
 	{
 		health += healing;
-		if (healing > max_health)
+		if (health > max_health)
 		{
 			health = max_health;
 		}
+		health_text.text = health.ToString();		
 	}
 
 
