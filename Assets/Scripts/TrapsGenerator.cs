@@ -8,10 +8,9 @@ public class TrapsGenerator : MonoBehaviour {
 
 	public int corridor_height;
 	public int corridor_width;
-	public float space_size;
 
 	[Range(0,1)]
-	public float trap_density;
+//	private float trap_density;
 
 	private List<TrapInfo> traps; //Stores an inventory of TrapInfos created from trap_prefabs
 
@@ -19,6 +18,31 @@ public class TrapsGenerator : MonoBehaviour {
 	public List<GameObject> trap_prefabs;
 	public List<GameObject> floor_prefabs;
 	public List<GameObject> wall_prefabs;
+
+
+	[Header("Difficulty Settings")]
+	[Header("Traps")]
+	public float flat_trap_density;
+	public bool trap_density_log_scaling;
+	[Range(0,1)]
+	public float initial_trap_density;
+	[Range(0,1)]
+	public float final_trap_density;
+	public float trap_difficulty_scaling_factor;  //affects how dramatically the logistic difficulty function ramps
+	public int trap_density_corridor_iterations;  //affects the length over which the logistic difficulty function has the desired effect
+
+	[Header("Pickups")]
+	public float flat_pickup_density;
+	public bool pickup_density_log_scaling;
+	[Range(0, 1)]
+	public float initial_pickup_density;
+	[Range(0, 1)]
+	public float final_pickup_density;
+	public float pickup_density_scaling_factor;
+	public int pickup_density_corridor_iterations;
+
+	private int iterations = 0;
+
 
 	private void Start()
 	{
@@ -37,18 +61,54 @@ public class TrapsGenerator : MonoBehaviour {
 	}
 
 	/// <summary>
+	/// Uses a logistic curve to return a difficulty between initial and final.
+	/// </summary>
+	/// <param name="this_iteration">The current point along the logistic curve.</param>
+	/// <param name="initial">The lower bound on the resulting difficulty, and the starting point.</param>
+	/// <param name="final">The upper bound on the resulting difficutly, and the ending point.</param>
+	/// <param name="scaling_factor">A scaling factor that shapes the resulting curve. Smaller values will result in a smoother curve</param>
+	/// <param name="intended_iterations">The intended number of iterations that this difficulty curve works for. Past this, values will simply approach the final value.</param>
+	/// <returns></returns>
+	public static float LogisticDifficultyCalcs(float this_iteration, float initial, float final, float scaling_factor, float intended_iterations)
+	{
+		float value = ((final - initial) / (1 + Mathf.Pow(3,(-scaling_factor * (this_iteration - (intended_iterations / 2)))))) + initial;
+
+		return value;
+	}
+
+	/// <summary>
 	/// Randomly generates and places a corridor of traps.
 	/// </summary>
 	/// <param name="offset">Distance forward from the origin in spaces</param>
 	public void CreateCorridor(int offset = 0)
 	{
-		pickup_gen.CreateCorridor(corridor_height, corridor_width, offset);
+		float trap_density = -1;
+		if (trap_density_log_scaling)
+		{
+			trap_density = LogisticDifficultyCalcs(iterations, initial_trap_density, final_trap_density, trap_difficulty_scaling_factor, trap_density_corridor_iterations);
+			iterations++;
+		}
+		else
+		{
+			trap_density = flat_trap_density;
+		}
+
+		float pickup_density = -1;
+		if (pickup_density_log_scaling)
+		{
+			pickup_density = LogisticDifficultyCalcs(iterations, initial_pickup_density, final_pickup_density, pickup_density_scaling_factor, pickup_density_corridor_iterations);
+		}
+		else
+		{
+			pickup_density = flat_pickup_density;
+		}
+		pickup_gen.CreateCorridor(corridor_height, corridor_width, offset, pickup_density);
+
 
 		TrapInfo[,] corridor = new TrapInfo[corridor_width, corridor_height];
 
 		HashSet<TrapInfo> placed_traps = new HashSet<TrapInfo>();
 
-		Debug.Log("Creating	Corridor " + offset);
 		//Populates the corridor with random traps
 		for (int x = 0; x < corridor.GetLength(0); x++)
 		{
@@ -148,7 +208,7 @@ public class TrapsGenerator : MonoBehaviour {
 			{
 				rotation *= Quaternion.Euler(0, 90, 0);
 			}
-			Trap new_trap = Instantiate(trap_info.prefab, new Vector3(trap_info.pos_x, 0, trap_info.pos_y + offset) * space_size, rotation).GetComponentInChildren<Trap>();
+			Trap new_trap = Instantiate(trap_info.prefab, new Vector3(trap_info.pos_x, 0, trap_info.pos_y + offset), rotation).GetComponentInChildren<Trap>();
 			new_trap.IncrementDirection(trap_info.rotation);
 		}
 

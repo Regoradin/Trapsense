@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class PickupGenerator : MonoBehaviour
 {
-	public float pickup_density;
 
 	public List<GameObject> pickups;
 
-	public void CreateCorridor(int corridor_height, int corridor_width, int offset)
+	public void CreateCorridor(int corridor_height, int corridor_width, int offset, float pickup_density)
 	{
 		for(int x = 0; x < corridor_width; x++)
 		{
