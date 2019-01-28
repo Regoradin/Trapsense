@@ -516,6 +516,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &750270117 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100060, guid: 6390a04c5c64f614d81784102ed9d633,
+    type: 3}
+  m_PrefabInstance: {fileID: 1010856727}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &756715826
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,6 +1042,9 @@ MonoBehaviour:
   trap_gen: {fileID: 1479238785}
   health_text: {fileID: 112099435}
   idle_clip: {fileID: 7400008, guid: 6390a04c5c64f614d81784102ed9d633, type: 3}
+  head_bone: {fileID: 750270117}
+  hats:
+  - {fileID: 218149613530080801, guid: e914bacf2547c3d4483ec207b054739b, type: 3}
 --- !u!114 &1010856735
 MonoBehaviour:
   m_ObjectHideFlags: 0

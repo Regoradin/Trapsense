@@ -19,5 +19,10 @@ public class UIScripts : MonoBehaviour
 #endif
 	}
 
+	public void SetHat(int value)
+	{
+		PlayerPrefs.SetInt("Hat", value);
+	}
+
 
 }

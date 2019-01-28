@@ -33,6 +33,7 @@ ModelImporter:
     100054: Player
     100056: lamp
     100058: lamp_rot_target
+    100060: Hat
     400000: Arms
     400002: Body
     400004: Cylinder
@@ -63,6 +64,7 @@ ModelImporter:
     400054: Player
     400056: lamp
     400058: lamp_rot_target
+    400060: Hat
     2100000: unnamed
     2100002: Material_002
     2100004: Material_003
