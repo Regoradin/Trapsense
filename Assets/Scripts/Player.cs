@@ -136,7 +136,7 @@ public class Player : MonoBehaviour {
 	private void SetHat()
 	{
 		int index = PlayerPrefs.GetInt("Hat", -1);
-		Vector3 offset = Vector3.right * .27f;
+		Vector3 offset = Vector3.right * -.27f;
 		if (index != -1) {
 			GameObject hat =Instantiate(hats[index], head_bone.transform);
 			//hat.transform.position = offset;

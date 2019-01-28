@@ -1444,6 +1444,9 @@ MonoBehaviour:
   - {fileID: 1901920556074651347, guid: 69322c106db6c1747b925f2e1a9ceb67, type: 3}
   wall_prefabs:
   - {fileID: 3695170706496779111, guid: 8d9c1e090b4322f41b2f3f7fca78212f, type: 3}
+  - {fileID: 1458579881953869625, guid: 9bf2dd7900f48df45a0f2e3242f1e927, type: 3}
+  - {fileID: 8694128109159690166, guid: 9e7da0633693ee5489f1aae31e6cf309, type: 3}
+  - {fileID: 7076976827745447928, guid: 33ef87c547ffbf24d805fd5e9f4cbc59, type: 3}
   flat_trap_density: 0
   trap_density_log_scaling: 1
   initial_trap_density: 0.3
@@ -1452,10 +1455,10 @@ MonoBehaviour:
   trap_density_corridor_iterations: 20
   flat_pickup_density: 0.02
   pickup_density_log_scaling: 1
-  initial_pickup_density: 0.003
-  final_pickup_density: 0.001
-  pickup_density_scaling_factor: 0.7
-  pickup_density_corridor_iterations: 40
+  initial_pickup_density: 0.03
+  final_pickup_density: 0.002
+  pickup_density_scaling_factor: 1.5
+  pickup_density_corridor_iterations: 8
 --- !u!4 &1479238786
 Transform:
   m_ObjectHideFlags: 0
