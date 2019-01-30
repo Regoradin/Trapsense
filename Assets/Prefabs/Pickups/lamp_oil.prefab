@@ -292,5 +292,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a62a71061ef8c449917aefe9bf12d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  light_increase: 1
+  light_increase: 2
   health_increase: 0
