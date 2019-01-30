@@ -50,7 +50,13 @@ public class Player : MonoBehaviour {
 
 	}
 
+	//Soley exists to make events happy.
 	public void Move(string input)
+	{
+		Move(input, false);
+	}
+
+	public void Move(string input, bool damaging = false)
 	{
 		//prevents processing of move inputs while an animation is playing
 		if (anim.GetCurrentAnimatorClipInfo(0)[0].clip == idle_clip)
@@ -60,7 +66,6 @@ public class Player : MonoBehaviour {
 
 			if (input == "Forward")
 			{
-				//	controller.Move(Vector3.forward * move_distance);
 				progress++;
 				if (progress > max_progress)
 				{
@@ -97,7 +102,14 @@ public class Player : MonoBehaviour {
 
 			if (input != "Wait" && is_valid_move)
 			{
-				anim.SetTrigger(input);
+				if (!damaging)
+				{
+					anim.SetTrigger(input);
+				}
+				else
+				{
+					anim.SetTrigger("Damage" + input);
+				}
 			}
 			else
 			{
@@ -116,11 +128,15 @@ public class Player : MonoBehaviour {
 	}
 
 
-	public void Damage(int damage)
+	public void Damage(int damage, string direction = "None")
 	{
 		health -= damage;
 		health_text.text = health.ToString();
-		anim.SetTrigger("Damage");
+		if (direction != "None")
+		{
+			Move(direction, true);
+		}
+		
 	}
 
 	public void Heal(int healing)

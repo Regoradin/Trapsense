@@ -88,14 +88,12 @@ public class Trap : MonoBehaviour {
 		Player player = other.GetComponent<Player>();
 		if(player != null)
 		{
-			player.Damage(damage);
-			if (direction.ToString() != "None")
-			{
-				//Calling player.move() directly will move the player without causing traps to progress another tick
-				//Still not sure if that's the behaviour I'm looking for.
-				//Timekeeper.timekeeper.CreateTick(direction.ToString());
-				player.Move(direction.ToString());
-			}
+			player.Damage(damage, direction.ToString());
+	//		player.Damage(damage);
+//			if (direction.ToString() == "None")
+//			{
+//				player.Move(direction.ToString());
+//			}
 		}
 	}
 }

@@ -9,7 +9,6 @@ public class PickupGenerator : MonoBehaviour
 
 	public void CreateCorridor(int corridor_height, int corridor_width, int offset, float pickup_density)
 	{
-		Debug.Log("Pickup Density: " + pickup_density);
 		for(int x = 0; x < corridor_width; x++)
 		{
 			for(int y = 0; y < corridor_height; y++)

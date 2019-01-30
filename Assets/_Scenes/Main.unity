@@ -146,7 +146,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 81.7, y: -17.900002}
+  m_AnchoredPosition: {x: 81.70001, y: -17.900024}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &112099435
@@ -285,7 +285,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 422741325}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.25, y: -0.041, z: 0.009}
+  m_LocalPosition: {x: -0.25, y: 0, z: 0.009}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1010856728}
@@ -310,7 +310,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.862
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -1442,6 +1442,7 @@ MonoBehaviour:
   floor_prefabs:
   - {fileID: 7227549171500979544, guid: 52dd5486d6fbb704bbbfe74b50d067ee, type: 3}
   - {fileID: 1901920556074651347, guid: 69322c106db6c1747b925f2e1a9ceb67, type: 3}
+  - {fileID: 7142286119898405599, guid: c6cf237efa34169439fc953882e827f4, type: 3}
   wall_prefabs:
   - {fileID: 3695170706496779111, guid: 8d9c1e090b4322f41b2f3f7fca78212f, type: 3}
   - {fileID: 1458579881953869625, guid: 9bf2dd7900f48df45a0f2e3242f1e927, type: 3}
