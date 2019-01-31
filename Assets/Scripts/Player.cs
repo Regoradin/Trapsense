@@ -136,6 +136,10 @@ public class Player : MonoBehaviour {
 		{
 			Move(direction, true);
 		}
+		else
+		{
+			anim.SetTrigger("Damage");
+		}
 		
 	}
 
