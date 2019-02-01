@@ -14,7 +14,8 @@ public class Player : MonoBehaviour {
 	public int max_health;
 	public int health;
 
-	public int progress = 1;
+	[HideInInspector]
+	public int progress = 0;
 	public int max_progress = 1;
 	public TrapsGenerator trap_gen;
 	private int corridor_gen_distance;
@@ -79,6 +80,11 @@ public class Player : MonoBehaviour {
 			if (input == "Back")
 			{
 				progress--;
+				if(progress < -trap_gen.start_height)
+				{
+					progress++;
+					is_valid_move = false;
+				}
 			}
 
 			if (input == "Left")

@@ -9,7 +9,9 @@ public class TrapsGenerator : MonoBehaviour {
 	public int corridor_height;
 	public int corridor_width;
 
-	[Range(0,1)]
+	public int start_height;
+
+//	[Range(0,1)]
 //	private float trap_density;
 
 	private List<TrapInfo> traps; //Stores an inventory of TrapInfos created from trap_prefabs
@@ -58,6 +60,36 @@ public class TrapsGenerator : MonoBehaviour {
 		}
 
 		CreateCorridor(0);
+
+
+		//GENERATING STARTING AREA
+		//Creating Floor
+		for (int x = 0; x < corridor_width; x++)
+		{
+			for (int y = 1; y <= start_height; y++)
+			{
+				//Rotation is to cancel out the axis mismatch with blender.
+				GameObject floor = floor_prefabs[Random.Range(0, floor_prefabs.Count())];
+				Instantiate(floor, new Vector3(x, 0, -y), Quaternion.Euler(Vector3.right * -90 + Vector3.up * 90 * Random.Range(0, 4)));
+			}
+		}
+
+		//Creating Walls
+		for (int y = 1; y <= start_height; y++)
+		{
+			GameObject wall = wall_prefabs[Random.Range(0, wall_prefabs.Count())];
+			Instantiate(wall, new Vector3(-1, 0, -y), Quaternion.Euler(Vector3.right * -90));
+
+			wall = wall_prefabs[Random.Range(0, wall_prefabs.Count())];
+			Instantiate(wall, new Vector3(corridor_width, 0, -y), Quaternion.Euler(Vector3.right * -90 + Vector3.up * 180));
+
+		}
+		//Creating Backwall
+		for(int x = -1; x <= corridor_width; x++)
+		{
+			GameObject wall = wall_prefabs[Random.Range(0, wall_prefabs.Count())];
+			Instantiate(wall, new Vector3(x, 0, -start_height - 1), Quaternion.Euler(Vector3.right * -90 + Vector3.up * 90));
+		}
 	}
 
 	/// <summary>
