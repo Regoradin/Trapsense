@@ -5104,7 +5104,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: 0.5299192, y: 0, z: 0, w: 0.8480481}
-  m_LocalPosition: {x: 4, y: 8, z: -1.22}
+  m_LocalPosition: {x: 4, y: 8, z: -2.27}
   m_LocalScale: {x: 1, y: 0.97900295, z: 1.0419942}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5808,10 +5808,11 @@ MonoBehaviour:
   max_progress: 0
   trap_gen: {fileID: 1479238785}
   health_text: {fileID: 112099435}
+  death_ui: {fileID: 1043886309}
   idle_clip: {fileID: 7400008, guid: 6390a04c5c64f614d81784102ed9d633, type: 3}
   head_bone: {fileID: 750270117}
-  hats:
-  - {fileID: 218149613530080801, guid: e914bacf2547c3d4483ec207b054739b, type: 3}
+  best_score_lin_increase: 30
+  total_score_geom_increase: 10
 --- !u!114 &1010856735
 MonoBehaviour:
   m_ObjectHideFlags: 0

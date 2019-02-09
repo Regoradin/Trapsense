@@ -26,19 +26,24 @@ public class Player : MonoBehaviour {
 	public event Tick PlayerTickEvent;
 
 	public Text health_text;
+	public GameObject death_ui;
 	public AnimationClip idle_clip;
 
 	public GameObject head_bone;
-	public List<GameObject> hats;
+
+	public int best_score_lin_increase;
+	public int total_score_geom_increase;
+
+	public Dictionary<GameObject, int> hat_dict;
 
 	private void Awake()
 	{
 		player = this;
-		//controller = GetComponent<CharacterController>();
-
+	
 		corridor_gen_distance = trap_gen.corridor_height;
 
 		anim = GetComponent<Animator>();
+
 	}
 
 	private void Start()
@@ -47,6 +52,7 @@ public class Player : MonoBehaviour {
 		health = max_health;
 		health_text.text = health.ToString();
 
+		death_ui.SetActive(false);		
 		SetHat();
 
 	}
@@ -146,6 +152,10 @@ public class Player : MonoBehaviour {
 		{
 			anim.SetTrigger("Damage");
 		}
+		if(health <= 0)
+		{
+			Die();
+		}
 		
 	}
 
@@ -162,11 +172,45 @@ public class Player : MonoBehaviour {
 	private void SetHat()
 	{
 		int index = PlayerPrefs.GetInt("Hat", -1);
-		Vector3 offset = Vector3.right * -.27f;
+		bool use_total_hat = PlayerPrefs.GetInt("UseTotalHat") == 1 ? true : false;
 		if (index != -1) {
-			GameObject hat =Instantiate(hats[index], head_bone.transform);
-			//hat.transform.position = offset;
+			if (use_total_hat)
+			{
+				GameObject hat = Instantiate(HatUnlockManager.hat_manager.total_hats[index], head_bone.transform);
+			}
+			else
+			{
+				GameObject hat = Instantiate(HatUnlockManager.hat_manager.best_hats[index], head_bone.transform);
+			}
 		}
+	}
+
+	public void Die()
+	{
+		death_ui.SetActive(true);
+		//Update best and total progress counters
+		if (max_progress > PlayerPrefs.GetInt("BestScore", 0))
+		{
+			PlayerPrefs.SetInt("BestScore", max_progress);
+		}
+
+		PlayerPrefs.SetInt("TotalScore", PlayerPrefs.GetInt("TotalScore", 0) + max_progress);
+
+		//Update target best and total scores if necessary, and increase the number of unlocked hats accordingly
+		while(PlayerPrefs.GetInt("BestScore") > PlayerPrefs.GetInt("BestTarget", 0))
+		{
+			PlayerPrefs.SetInt("BestTarget", PlayerPrefs.GetInt("BestTarget", 0) + best_score_lin_increase);
+
+			PlayerPrefs.SetInt("BestUnlockedHatCount", PlayerPrefs.GetInt("BestUnlockedHatCount", 0) + 1);
+		}
+		while(PlayerPrefs.GetInt("TotalProgress") > PlayerPrefs.GetInt("TotalTarget", 1))
+		{
+			PlayerPrefs.SetInt("TotalTarget", PlayerPrefs.GetInt("TotalTarget", 1) * total_score_geom_increase);
+
+			PlayerPrefs.SetInt("TotalUnlockedHatCount", PlayerPrefs.GetInt("TotalUnlockedHatCount", 0) + 1);
+		}
+
+		PlayerPrefs.Save();
 	}
 
 }

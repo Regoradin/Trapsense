@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Activator.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\HatUnlockManager.cs" />
     <Compile Include="Assets\Scripts\Pickup.cs" />
     <Compile Include="Assets\Scripts\PickupGenerator.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
@@ -70,7 +71,8 @@
     <Compile Include="Assets\Scripts\Torch.cs" />
     <Compile Include="Assets\Scripts\Trap.cs" />
     <Compile Include="Assets\Scripts\TrapsGenerator.cs" />
-    <Compile Include="Assets\Scripts\UI\Death.cs" />
+    <Compile Include="Assets\Scripts\UI\HatButton.cs" />
+    <Compile Include="Assets\Scripts\UI\HatButtonGenerator.cs" />
     <Compile Include="Assets\Scripts\UI\UIScripts.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/olive/Documents/Git/Trapsense/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
