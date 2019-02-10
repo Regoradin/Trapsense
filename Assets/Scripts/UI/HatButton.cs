@@ -7,12 +7,18 @@ public class HatButton : MonoBehaviour
 {
 	public int index;
 	public bool use_total;
+	public bool unlocked;
 
 	public Text text;
 
-	public void Awake()
+	private void Awake()
 	{
 		text = GetComponentInChildren<Text>();
+	}
+
+	private void Start()
+	{
+		GetComponent<Button>().interactable = unlocked;
 	}
 
 	public void SetHat()

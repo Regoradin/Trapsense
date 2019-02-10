@@ -19,6 +19,14 @@ public class HatButtonGenerator : MonoBehaviour
 			button.index = i;
 			button.use_total = false;
 			button.text.text = hat_man.best_hats[i].name;
+			if(i < PlayerPrefs.GetInt("BestUnlockedHatCount"))
+			{
+				button.unlocked = true;
+			}
+			else
+			{
+				button.unlocked = false;
+			}
 		}
 
 		for (int i = 0; i < hat_man.total_hats.Count; i++)
@@ -29,6 +37,14 @@ public class HatButtonGenerator : MonoBehaviour
 			button.index = i;
 			button.use_total = true;
 			button.text.text = hat_man.total_hats[i].name;
+			if (i < PlayerPrefs.GetInt("TotalUnlockedHatCount"))
+			{
+				button.unlocked = true;
+			}
+			else
+			{
+				button.unlocked = false;
+			}
 		}
 	}
 

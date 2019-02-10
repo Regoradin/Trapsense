@@ -27,12 +27,15 @@ public class Player : MonoBehaviour {
 
 	public Text health_text;
 	public GameObject death_ui;
+	public Text best_score_text;
+	public Text total_score_text;
 	public AnimationClip idle_clip;
 
 	public GameObject head_bone;
 
 	public int best_score_lin_increase;
 	public int total_score_geom_increase;
+	private int unadded_progress; //tracks progress that hasn't been added to the total score in PlayerPrefs yet.	
 
 	public Dictionary<GameObject, int> hat_dict;
 
@@ -77,6 +80,11 @@ public class Player : MonoBehaviour {
 				if (progress > max_progress)
 				{
 					max_progress = progress;
+					unadded_progress++;
+					if (max_progress > PlayerPrefs.GetInt("BestTarget") || unadded_progress + PlayerPrefs.GetInt("TotalScore") > PlayerPrefs.GetInt("TotalTarget")) ;
+					{
+						UpdateScores();
+					}
 					if (max_progress % corridor_gen_distance == 1) //Generates next segment of corridor one space into the current segment
 					{
 						trap_gen.CreateCorridor(max_progress + corridor_gen_distance - 1);
@@ -176,7 +184,7 @@ public class Player : MonoBehaviour {
 		if (index != -1) {
 			if (use_total_hat)
 			{
-				GameObject hat = Instantiate(HatUnlockManager.hat_manager.total_hats[index], head_bone.transform);
+GameObject hat = Instantiate(HatUnlockManager.hat_manager.total_hats[index], head_bone.transform);
 			}
 			else
 			{
@@ -188,22 +196,35 @@ public class Player : MonoBehaviour {
 	public void Die()
 	{
 		death_ui.SetActive(true);
+
+		UpdateScores();
+
+		int total_score = PlayerPrefs.GetInt("TotalScore");
+		int best_target = PlayerPrefs.GetInt("BestTarget");
+		int total_target = PlayerPrefs.GetInt("TotalTarget");
+		best_score_text.text = "Score: " + max_progress + " / " + best_target;
+		total_score_text.text = "Total Score: " + total_score + " / " + total_target;
+	}
+
+	public void UpdateScores()
+	{
 		//Update best and total progress counters
 		if (max_progress > PlayerPrefs.GetInt("BestScore", 0))
 		{
 			PlayerPrefs.SetInt("BestScore", max_progress);
 		}
 
-		PlayerPrefs.SetInt("TotalScore", PlayerPrefs.GetInt("TotalScore", 0) + max_progress);
+		PlayerPrefs.SetInt("TotalScore", PlayerPrefs.GetInt("TotalScore", 0) + unadded_progress);
+		unadded_progress = 0;
 
 		//Update target best and total scores if necessary, and increase the number of unlocked hats accordingly
-		while(PlayerPrefs.GetInt("BestScore") > PlayerPrefs.GetInt("BestTarget", 0))
+		while (PlayerPrefs.GetInt("BestScore") > PlayerPrefs.GetInt("BestTarget", 0))
 		{
 			PlayerPrefs.SetInt("BestTarget", PlayerPrefs.GetInt("BestTarget", 0) + best_score_lin_increase);
 
 			PlayerPrefs.SetInt("BestUnlockedHatCount", PlayerPrefs.GetInt("BestUnlockedHatCount", 0) + 1);
 		}
-		while(PlayerPrefs.GetInt("TotalProgress") > PlayerPrefs.GetInt("TotalTarget", 1))
+		while (PlayerPrefs.GetInt("TotalScore") > PlayerPrefs.GetInt("TotalTarget", 1))
 		{
 			PlayerPrefs.SetInt("TotalTarget", PlayerPrefs.GetInt("TotalTarget", 1) * total_score_geom_increase);
 
@@ -211,6 +232,7 @@ public class Player : MonoBehaviour {
 		}
 
 		PlayerPrefs.Save();
+
 	}
 
 }

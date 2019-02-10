@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\TrapsGenerator.cs" />
     <Compile Include="Assets\Scripts\UI\HatButton.cs" />
     <Compile Include="Assets\Scripts\UI\HatButtonGenerator.cs" />
+    <Compile Include="Assets\Scripts\UI\ProgressMeter.cs" />
     <Compile Include="Assets\Scripts\UI\UIScripts.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/olive/Documents/Git/Trapsense/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
