@@ -43,10 +43,12 @@ public class Trap : MonoBehaviour {
 	public bool one_eighty = true;
 	public bool two_seventy = true;
 
+	[Header("Audio")]
+	public AudioSource[] audio_sources;
+
 
 	private void Start()
 	{
-		//		Timekeeper.timekeeper.TickEvent	+= Tick;
 		Player.player.PlayerTickEvent += Tick;
 		anim = GetComponent<Animator>();
 		RandomizeState();
@@ -68,7 +70,7 @@ public class Trap : MonoBehaviour {
 		}
 	}
 	/// <summary>
-	/// Randomizes the animation state of the
+	/// Randomizes the animation state of the trap
 	/// </summary>
 	private void RandomizeState()
 	{
@@ -89,11 +91,12 @@ public class Trap : MonoBehaviour {
 		if(player != null)
 		{
 			player.Damage(damage, direction.ToString());
-	//		player.Damage(damage);
-//			if (direction.ToString() == "None")
-//			{
-//				player.Move(direction.ToString());
-//			}
 		}
+	}
+
+	public void PlayAudio(int index)
+	{
+		Debug.Log("Playing audio");
+		audio_sources[index].Play();
 	}
 }

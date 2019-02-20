@@ -20,6 +20,9 @@ public class Torch : MonoBehaviour
 	private float x_org = 1;
 	private float y_org = 1;
 
+	public AudioSource audio_source;
+	private float initial_intensity;
+
 	void Start()
 	{
 		torch = GetComponentInChildren<Light>();
@@ -29,12 +32,15 @@ public class Torch : MonoBehaviour
 
 		pix = new Color[noise_height * noise_width];
 
+		initial_intensity = torch.intensity;
+
 	}
 
 	private void Update()
 	{
 	//	SetCookie();
 		FlickerColor();
+		SetAudio();
 	}
 
 	void FlickerColor()
@@ -78,5 +84,10 @@ public class Torch : MonoBehaviour
 		noise.SetPixels(pix, CubemapFace.PositiveY);
 		noise.SetPixels(pix, CubemapFace.PositiveZ);
 		noise.Apply();
+	}
+
+	void SetAudio()
+	{
+		audio_source.pitch = torch.intensity / initial_intensity;
 	}
 }

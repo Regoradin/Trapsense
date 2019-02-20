@@ -275,7 +275,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: UnFalling
-  m_Speed: -1
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101326690891775956}
@@ -288,7 +288,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400004, guid: 285696d131022834a904bca3e77737ef, type: 3}
+  m_Motion: {fileID: 7400000, guid: f806be6e383461f4cb6691026a1a462b, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -368,7 +368,7 @@ AnimatorStateMachine:
     m_Position: {x: 144, y: 576, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102526268683817342}
-    m_Position: {x: 300, y: 288, z: 0}
+    m_Position: {x: 372, y: 324, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102737394890519924}
     m_Position: {x: 96, y: 396, z: 0}

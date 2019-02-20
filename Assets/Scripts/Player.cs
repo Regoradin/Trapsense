@@ -39,6 +39,10 @@ public class Player : MonoBehaviour {
 
 	public Dictionary<GameObject, int> hat_dict;
 
+	private bool left_step = false;
+	public AudioSource left_foot;
+	public AudioSource right_foot;
+
 	private void Awake()
 	{
 		player = this;
@@ -233,6 +237,20 @@ GameObject hat = Instantiate(HatUnlockManager.hat_manager.total_hats[index], hea
 
 		PlayerPrefs.Save();
 
+	}
+
+	public void PlayStepNoise()
+	{
+		if (left_step)
+		{
+			left_step = false;
+			left_foot.Play();
+		}
+		else
+		{
+			left_step = true;
+			right_foot.Play();
+		}
 	}
 
 }
