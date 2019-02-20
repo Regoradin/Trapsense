@@ -25,7 +25,7 @@ public class Player : MonoBehaviour {
 	public delegate void Tick(string input);
 	public event Tick PlayerTickEvent;
 
-	public Text health_text;
+	public Slider health_bar;	
 	public GameObject death_ui;
 	public Text best_score_text;
 	public Text total_score_text;
@@ -57,7 +57,8 @@ public class Player : MonoBehaviour {
 	{
 		Timekeeper.timekeeper.TickEvent += Move;
 		health = max_health;
-		health_text.text = health.ToString();
+		health_bar.maxValue = max_health;
+		health_bar.value = health;
 
 		death_ui.SetActive(false);		
 		SetHat();
@@ -155,7 +156,7 @@ public class Player : MonoBehaviour {
 	public void Damage(int damage, string direction = "None")
 	{
 		health -= damage;
-		health_text.text = health.ToString();
+		health_bar.value = health;
 		if (direction != "None")
 		{
 			Move(direction, true);
@@ -178,7 +179,7 @@ public class Player : MonoBehaviour {
 		{
 			health = max_health;
 		}
-		health_text.text = health.ToString();		
+		health_bar.value = health;
 	}
 
 	private void SetHat()

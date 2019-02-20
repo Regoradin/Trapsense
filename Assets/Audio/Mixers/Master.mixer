@@ -84,7 +84,7 @@ AudioMixerSnapshotController:
     3b501ba28866e7045b24ddbc4078b8cf: 100
     813fbda30800be245a39d40f77fd88db: 0.92
     255ef8444659bbd44bd3d21eccc44990: 548
-    1cf4b854192691442859757c5d1fe3ef: 2.05
+    1cf4b854192691442859757c5d1fe3ef: 1.74
     888efa748d38d4941ad1f90419d310a7: -10000
     0da63884d60b7bb4b84687fbd7077c9f: 0
     09d172851ed7ab64f8fa7a548e15f210: 0.1
@@ -92,16 +92,18 @@ AudioMixerSnapshotController:
     7480a316bf8fe88468ef4fa1c8f32d12: 0.059
     043702372cc5ac14e9847bd5178faa0e: 296
     7092bc97137a3b844a4590a9470660ef: 1.77
-    ce7bedc770cd13e4687affcb9f9f971f: -0.0024418721
+    ce7bedc770cd13e4687affcb9f9f971f: -16.818087
     c0337948d0113a44ba6d29251297813f: 1450
     3896374af3fb8e949aec498ea0852e37: -1933
     108f820b5160cc64882eb6b8fd1fa22a: -3313
     63053b9bd382d384c9b843c046fbabf2: -160
     40ff551cbd904b14189d81e0fb61ff42: 0.792
+    e189fb8c5f566b54ab3c8cddb9669b10: -35.309517
     26ab37acf93d2d448ac9e9ad3a14cb99: -60.6
     67065bac8ac741947813734105fce667: -0
     3bb87cdcfd42ef649af70008f8829dbd: 100
     5ace584dd4e146a45aa4db82a4e26da0: 0.90400004
+    1e05526d9b6dd91458d51f2e55fc8f43: -0
     70c065ddc58a44645a73c547341d695c: -617
     f96c27deee364114789c48db0cfc438d: 13.69
     4efe7b3fa26d09d4380d7b4b0b068022: 2.64
@@ -123,6 +125,7 @@ AudioMixerGroupController:
   m_Pitch: ac9b76209066f9b40b128b8c8d1dd078
   m_Effects:
   - {fileID: 244922671122580952}
+  - {fileID: 244869454447730396}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -278,6 +281,20 @@ AudioMixerEffectController:
   m_MixLevel: a8735bc170418a644abaab4ff050adfb
   m_Parameters: []
   m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &244869454447730396
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 4fa275d565a538f4a9a2efbeb03d0f5e
+  m_EffectName: Send
+  m_MixLevel: 1e05526d9b6dd91458d51f2e55fc8f43
+  m_Parameters: []
+  m_SendTarget: {fileID: 244665728142321030}
   m_EnableWetMix: 0
   m_Bypass: 0
 --- !u!244 &244872275996632678
