@@ -24,6 +24,7 @@ public class TrapsGenerator : MonoBehaviour {
 
 	[Header("Difficulty Settings")]
 	[Header("Traps")]
+	[Range(0, 1)]
 	public float flat_trap_density;
 	public bool trap_density_log_scaling;
 	[Range(0,1)]
@@ -34,6 +35,7 @@ public class TrapsGenerator : MonoBehaviour {
 	public int trap_density_corridor_iterations;  //affects the length over which the logistic difficulty function has the desired effect
 
 	[Header("Pickups")]
+	[Range(0, 1)]
 	public float flat_pickup_density;
 	public bool pickup_density_log_scaling;
 	[Range(0, 1)]
