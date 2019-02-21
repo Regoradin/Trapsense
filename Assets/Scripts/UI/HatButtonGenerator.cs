@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HatButtonGenerator : MonoBehaviour
 {
 	private HatUnlockManager hat_man;
 	public GameObject hat_button;
+	public ToggleGroup toggle_group;
 
 	private void Start()
 	{
@@ -14,6 +16,8 @@ public class HatButtonGenerator : MonoBehaviour
 		for(int i = 0; i < hat_man.best_hats.Count; i++)
 		{
 			GameObject button_obj = Instantiate(hat_button, transform);
+
+			button_obj.GetComponent<Toggle>().group = toggle_group;
 
 			HatButton button = button_obj.GetComponent<HatButton>();
 			button.index = i;
@@ -32,6 +36,8 @@ public class HatButtonGenerator : MonoBehaviour
 		for (int i = 0; i < hat_man.total_hats.Count; i++)
 		{
 			GameObject button_obj = Instantiate(hat_button, transform);
+
+			button_obj.GetComponent<Toggle>().group = toggle_group;
 
 			HatButton button = button_obj.GetComponent<HatButton>();
 			button.index = i;

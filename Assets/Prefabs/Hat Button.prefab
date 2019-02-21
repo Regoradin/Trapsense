@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 7968004296401776544}
   - component: {fileID: 411792879291829072}
   m_Layer: 5
-  m_Name: Indy Hat Button
+  m_Name: Hat Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223,4 +223,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   use_total: 0
+  unlocked: 0
   text: {fileID: 0}

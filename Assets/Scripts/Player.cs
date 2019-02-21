@@ -40,6 +40,7 @@ public class Player : MonoBehaviour {
 	public Dictionary<GameObject, int> hat_dict;
 
 	private bool left_step = false;
+	public AudioSource damage_sound;
 	public AudioSource left_foot;
 	public AudioSource right_foot;
 
@@ -157,6 +158,7 @@ public class Player : MonoBehaviour {
 	{
 		health -= damage;
 		health_bar.value = health;
+		damage_sound.Play();		
 		if (direction != "None")
 		{
 			Move(direction, true);

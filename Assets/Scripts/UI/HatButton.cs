@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class HatButton : MonoBehaviour
 {
+	//Due to some changes, it's actually a toggle, but whatever.
 	public int index;
 	public bool use_total;
 	public bool unlocked;
@@ -18,7 +19,12 @@ public class HatButton : MonoBehaviour
 
 	private void Start()
 	{
-		GetComponent<Button>().interactable = unlocked;
+		Toggle toggle = GetComponent<Toggle>();
+		toggle.interactable = unlocked;
+		if(index == PlayerPrefs.GetInt("Hat"))
+		{
+			toggle.isOn = true;
+		}
 	}
 
 	public void SetHat()
