@@ -1877,6 +1877,7 @@ MonoBehaviour:
   head_bone: {fileID: 750270117}
   best_score_lin_increase: 30
   total_score_geom_increase: 10
+  damage_sound: {fileID: 724593031}
   left_foot: {fileID: 208112009}
   right_foot: {fileID: 1196041149}
 --- !u!4 &1010856734 stripped
