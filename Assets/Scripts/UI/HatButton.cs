@@ -11,6 +11,7 @@ public class HatButton : MonoBehaviour
 	public bool unlocked;
 
 	public Text text;
+	private Toggle toggle;
 
 	private void Awake()
 	{
@@ -19,7 +20,7 @@ public class HatButton : MonoBehaviour
 
 	private void Start()
 	{
-		Toggle toggle = GetComponent<Toggle>();
+		toggle = GetComponent<Toggle>();
 		toggle.interactable = unlocked;
 		if(index == PlayerPrefs.GetInt("Hat"))
 		{
@@ -27,14 +28,22 @@ public class HatButton : MonoBehaviour
 		}
 	}
 
-	public void SetHat()
+	public void SetHat(bool selecting)
 	{
-		PlayerPrefs.SetInt("Hat", index);
+		if (toggle.isOn)
+		{
+			PlayerPrefs.SetInt("Hat", index);
 
-		int use_total_int = use_total ? 1 : 0;
-		PlayerPrefs.SetInt("UseTotalHat", use_total_int);
+			int use_total_int = use_total ? 1 : 0;
+			PlayerPrefs.SetInt("UseTotalHat", use_total_int);
 
+		}
+		else
+		{
+			PlayerPrefs.SetInt("Hat", -1);
+		}
 		PlayerPrefs.Save();
+
 	}
 
 

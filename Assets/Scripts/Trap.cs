@@ -96,7 +96,6 @@ public class Trap : MonoBehaviour {
 
 	public void PlayAudio(int index)
 	{
-		Debug.Log("Playing audio");
 		audio_sources[index].Play();
 	}
 }
