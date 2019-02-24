@@ -20,7 +20,7 @@ public class Timekeeper : MonoBehaviour {
 
 	private void Update()
 	{
-		if (!waiting)
+		if (!waiting && !Player.paused)
 		{
 			if (TickEvent != null)
 			{

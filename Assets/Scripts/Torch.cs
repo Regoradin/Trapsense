@@ -38,9 +38,11 @@ public class Torch : MonoBehaviour
 
 	private void Update()
 	{
-	//	SetCookie();
-		FlickerColor();
-		SetAudio();
+		if (!Player.paused)
+		{
+			FlickerColor();
+			SetAudio();
+		}
 	}
 
 	void FlickerColor()

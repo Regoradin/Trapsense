@@ -27,8 +27,14 @@ public class Player : MonoBehaviour {
 
 	public Slider health_bar;	
 	public GameObject death_ui;
+	public Text score_text;
 	public Text best_score_text;
 	public Text total_score_text;
+	public Text total_goal_text;
+
+	public GameObject pause_ui;
+	public static bool paused = false;
+
 	public AnimationClip idle_clip;
 
 	public GameObject head_bone;
@@ -61,9 +67,30 @@ public class Player : MonoBehaviour {
 		health_bar.maxValue = max_health;
 		health_bar.value = health;
 
-		death_ui.SetActive(false);		
+		death_ui.SetActive(false);
+		pause_ui.SetActive(false);
 		SetHat();
 
+	}
+
+	public void Pause(bool input)
+	{
+		paused = input;
+		if (paused)
+		{
+			pause_ui.SetActive(true);
+		}
+		else
+		{
+			pause_ui.SetActive(false);
+		}
+	}
+	private void Update()
+	{
+		if (Input.GetButtonDown("Pause"))
+		{
+			Pause(!Player.paused);
+		}
 	}
 
 	//Soley exists to make events happy.
@@ -191,7 +218,7 @@ public class Player : MonoBehaviour {
 		if (index != -1) {
 			if (use_total_hat)
 			{
-GameObject hat = Instantiate(HatUnlockManager.hat_manager.total_hats[index], head_bone.transform);
+				GameObject hat = Instantiate(HatUnlockManager.hat_manager.total_hats[index], head_bone.transform);
 			}
 			else
 			{
@@ -209,8 +236,10 @@ GameObject hat = Instantiate(HatUnlockManager.hat_manager.total_hats[index], hea
 		int total_score = PlayerPrefs.GetInt("TotalScore");
 		int best_target = PlayerPrefs.GetInt("BestTarget");
 		int total_target = PlayerPrefs.GetInt("TotalTarget");
-		best_score_text.text = "Score: " + max_progress + " / " + best_target;
-		total_score_text.text = "Total Score: " + total_score + " / " + total_target;
+		score_text.text = "Distance: " + max_progress;
+		best_score_text.text = "Next hat unlocked at: " + best_target;
+		total_score_text.text = "Total Distance: " + total_score;
+		total_goal_text.text = "Next hat unlocked at: " + total_target;
 	}
 
 	public void UpdateScores()
