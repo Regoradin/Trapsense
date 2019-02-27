@@ -68,7 +68,7 @@ public class Player : MonoBehaviour {
 		health_bar.value = health;
 
 		death_ui.SetActive(false);
-		pause_ui.SetActive(false);
+		Pause(false);
 		SetHat();
 
 	}
@@ -229,8 +229,6 @@ public class Player : MonoBehaviour {
 
 	public void Die()
 	{
-		death_ui.SetActive(true);
-
 		UpdateScores();
 
 		int total_score = PlayerPrefs.GetInt("TotalScore");
@@ -240,6 +238,13 @@ public class Player : MonoBehaviour {
 		best_score_text.text = "Next hat unlocked at: " + best_target;
 		total_score_text.text = "Total Distance: " + total_score;
 		total_goal_text.text = "Next hat unlocked at: " + total_target;
+
+		//Delay a bit so player can see what killed them.
+		Invoke("ActivateDeathUI", 0.4f);
+	}
+	private void ActivateDeathUI()
+	{
+		death_ui.SetActive(true);
 	}
 
 	public void UpdateScores()
