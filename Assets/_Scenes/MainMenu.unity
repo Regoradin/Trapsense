@@ -1215,6 +1215,109 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &759957806 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4207680733461502472, guid: 3ff194e7d6b3be444819b157ddb22e92,
+    type: 3}
+  m_PrefabInstance: {fileID: 148708040}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &759957807
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759957806}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 243240036736671214, guid: 5558c85966334864a82ecf39ac0721ef,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 6b9bbc00d9e370b4bbedecc31d927f0a, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &811332654
 GameObject:
   m_ObjectHideFlags: 0
@@ -1427,7 +1530,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &831611108
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3597,16 +3700,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   best_hats:
   - {fileID: 218149613530080801, guid: e914bacf2547c3d4483ec207b054739b, type: 3}
-  - {fileID: 4987458255302591027, guid: 99f0bbb92d754e745a90ca8217f439f6, type: 3}
   - {fileID: 2848451994232735089, guid: 613453fec5c7050448c03d9422d36cd2, type: 3}
-  - {fileID: 7153632563746845412, guid: e9b5f39f10d25fa4ea79a892855e5292, type: 3}
+  - {fileID: 2270957677738284342, guid: d45d153b32036cc418994c3933e428d0, type: 3}
   - {fileID: 6145933070423939615, guid: 7088317db53082145b06afa6ca2afbb2, type: 3}
   - {fileID: 1240689735374070421, guid: 5ac44d7f23b2a5c429fb0fbbed19229c, type: 3}
+  - {fileID: 4987458255302591027, guid: 99f0bbb92d754e745a90ca8217f439f6, type: 3}
   total_hats:
   - {fileID: 2972220598540437559, guid: 9c1ec3aeb979b2648be801e40f861ca0, type: 3}
-  - {fileID: 6400506311663361108, guid: 26100d297ca464948952ec0a4f042a16, type: 3}
   - {fileID: 311770014219071726, guid: bb34c169b04ae4046bef64446cee5c7d, type: 3}
-  - {fileID: 2270957677738284342, guid: d45d153b32036cc418994c3933e428d0, type: 3}
+  - {fileID: 6400506311663361108, guid: 26100d297ca464948952ec0a4f042a16, type: 3}
+  - {fileID: 7153632563746845412, guid: e9b5f39f10d25fa4ea79a892855e5292, type: 3}
 --- !u!4 &1970935911
 Transform:
   m_ObjectHideFlags: 0
