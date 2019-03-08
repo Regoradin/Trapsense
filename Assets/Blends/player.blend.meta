@@ -34,6 +34,8 @@ ModelImporter:
     100056: lamp
     100058: lamp_rot_target
     100060: Hat
+    100062: Bone
+    100064: Bone_001
     400000: Arms
     400002: Body
     400004: Cylinder
@@ -65,6 +67,8 @@ ModelImporter:
     400056: lamp
     400058: lamp_rot_target
     400060: Hat
+    400062: Bone
+    400064: Bone_001
     2100000: unnamed
     2100002: Material_002
     2100004: Material_003
@@ -104,6 +108,11 @@ ModelImporter:
     7400018: BackDamage
     7400020: LeftDamage
     7400022: RightDamage
+    7400024: Idle_Mirrored
+    7400026: LeftStep_Mirrored
+    7400028: RightStep_Mirrored
+    7400030: BackStep_Mirrored
+    7400032: ForwardStep_Mirrored
     9500000: //RootNode
     13700000: Player
     2186277476908879412: ImportLogs
@@ -127,7 +136,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -206,7 +215,7 @@ ModelImporter:
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 0
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
@@ -290,7 +299,7 @@ ModelImporter:
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 0
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
@@ -374,7 +383,7 @@ ModelImporter:
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 0
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
@@ -430,7 +439,7 @@ ModelImporter:
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 0
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
@@ -611,6 +620,251 @@ ModelImporter:
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle_Mirrored
+      takeName: Idle_Mirrored
+      firstFrame: 0
+      lastFrame: 79
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: LeftStep_Mirrored
+      takeName: LeftStep_Mirrored
+      firstFrame: 0
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 1
+        functionName: EndMove
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.264574
+        functionName: PlayStepNoise
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.7914798
+        functionName: PlayStepNoise
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: RightStep_Mirrored
+      takeName: RightStep_Mirrored
+      firstFrame: 0
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 1
+        functionName: EndMove
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.33856502
+        functionName: PlayStepNoise
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.60762334
+        functionName: PlayStepNoise
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.7735426
+        functionName: PlayStepNoise
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: BackStep_Mirrored
+      takeName: BackStep_Mirrored
+      firstFrame: 0
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 1
+        functionName: EndMove
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.14798206
+        functionName: PlayStepNoise
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.3295964
+        functionName: PlayStepNoise
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.67713004
+        functionName: PlayStepNoise
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ForwardStep_Mirrored
+      takeName: ForwardStep_Mirrored
+      firstFrame: 0
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 1
+        functionName: EndMove
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.47309417
+        functionName: PlayStepNoise
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.75560534
+        functionName: PlayStepNoise
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.926009
+        functionName: PlayStepNoise
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -650,7 +904,107 @@ ModelImporter:
   humanDescription:
     serializedVersion: 2
     human: []
-    skeleton: []
+    skeleton:
+    - name: player(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Player
+      parentName: player(Clone)
+      position: {x: -0, y: -0.06338655, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Armature
+      parentName: player(Clone)
+      position: {x: -0, y: -0.000000002770714, z: -0.06338655}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: body1
+      parentName: Armature
+      position: {x: -0, y: 0, z: 0.8037907}
+      rotation: {x: 0.39472058, y: 0.3947204, z: -0.586682, w: 0.5866819}
+      scale: {x: 1, y: 1, z: 1}
+    - name: body2
+      parentName: body1
+      position: {x: -0.51931375, y: 0.000000039207094, z: 0.000000029802322}
+      rotation: {x: 0.91827834, y: 0.038778417, z: -0.39400116, w: 0.0049253036}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    - name: arm_upper_l
+      parentName: body2
+      position: {x: -0.4543773, y: 0.25206867, z: -0.0072957366}
+      rotation: {x: 0.7511848, y: -0.14851083, z: -0.38127965, w: 0.5179689}
+      scale: {x: 1, y: 1.0000001, z: 0.9999999}
+    - name: arm_lower_l
+      parentName: arm_upper_l
+      position: {x: -0.40941498, y: 0.000000052154064, z: -0.00000013783574}
+      rotation: {x: -0.054591246, y: 0.24064317, z: 0.23421536, w: 0.94034773}
+      scale: {x: 0.9999997, y: 0.9999999, z: 1.0000004}
+    - name: hand_l
+      parentName: arm_lower_l
+      position: {x: -0.2626785, y: 0.000000037252903, z: 0.00000015832484}
+      rotation: {x: 0.13256133, y: 0.04267043, z: 0.47324598, w: 0.86985344}
+      scale: {x: 0.99999994, y: 1, z: 1}
+    - name: lamp
+      parentName: hand_l
+      position: {x: -0.24781854, y: -0.000000011175871, z: 0.000000059604645}
+      rotation: {x: 0.71003634, y: 0.35754055, z: 0.21119548, w: 0.5686912}
+      scale: {x: 0.99999994, y: 1, z: 0.9999999}
+    - name: arm_upper_r_001
+      parentName: body2
+      position: {x: -0.45437723, y: -0.25206858, z: -0.00729654}
+      rotation: {x: 0.44789907, y: 0.8844046, z: 0.050833464, w: -0.120958395}
+      scale: {x: 1.0000005, y: 1.0000014, z: 0.99999994}
+    - name: arm_lower_r_001
+      parentName: arm_upper_r_001
+      position: {x: -0.40941492, y: 0.000000006402843, z: 0.000000024214387}
+      rotation: {x: 0.07346615, y: 0.5378692, z: -0.37031916, w: 0.75376606}
+      scale: {x: 1.0000005, y: 1.0000011, z: 0.9999995}
+    - name: hand_r_001
+      parentName: arm_lower_r_001
+      position: {x: -0.26267847, y: 0.000000052154064, z: -0.000000059604645}
+      rotation: {x: 0.044004776, y: 0.11382844, z: -0.21622704, w: 0.968686}
+      scale: {x: 0.99999994, y: 1, z: 1.0000001}
+    - name: head
+      parentName: body2
+      position: {x: -0.6305031, y: 0.00000004901085, z: -0.000000013387762}
+      rotation: {x: 0.30834678, y: 0.09573463, z: -0.100037545, w: 0.94114274}
+      scale: {x: 0.99999994, y: 1.0000001, z: 1}
+    - name: Hat
+      parentName: head
+      position: {x: -0.49488226, y: 0.000000029802322, z: 0.000000044703484}
+      rotation: {x: 0.9970391, y: -0.00000007809034, z: -0.07689636, w: 0.00000012595139}
+      scale: {x: 0.99999994, y: 1, z: 1}
+    - name: leg_upper_l
+      parentName: body1
+      position: {x: -0.06769603, y: -0.19673645, z: -0.0062148343}
+      rotation: {x: 0.14675769, y: -0.22163749, z: 0.94078046, w: 0.210407}
+      scale: {x: 1.0000018, y: 1.0000184, z: 1.0000024}
+    - name: leg_lower_l
+      parentName: leg_upper_l
+      position: {x: -0.43714374, y: 0.000000026077032, z: -0.000000052154064}
+      rotation: {x: 0.9023662, y: 0.17500593, z: 0.3938198, w: 0.0037584023}
+      scale: {x: 1.000001, y: 0.9999964, z: 0.9999986}
+    - name: foot_l
+      parentName: leg_lower_l
+      position: {x: -0.4749454, y: 0.000000035390258, z: 0.000000011175871}
+      rotation: {x: 0.44462326, y: 0.018102067, z: 0.8954652, w: -0.011161393}
+      scale: {x: 1.0000021, y: 1.0000001, z: 0.99999774}
+    - name: leg_upper_r
+      parentName: body1
+      position: {x: -0.067696, y: 0.19673645, z: -0.0062149283}
+      rotation: {x: -0.112900615, y: 0.07977975, z: 0.9768822, w: -0.16306375}
+      scale: {x: 0.9999999, y: 1.0000166, z: 1.0000036}
+    - name: leg_lower_r
+      parentName: leg_upper_r
+      position: {x: -0.43714368, y: 0.000000018626451, z: 0.000000070780516}
+      rotation: {x: 0.87593544, y: -0.17917341, z: 0.44700006, w: 0.028722696}
+      scale: {x: 0.99999803, y: 0.9999967, z: 1}
+    - name: foot_r
+      parentName: leg_lower_r
+      position: {x: -0.47494534, y: -0.000000001862645, z: 0.000000001862645}
+      rotation: {x: 0.5947882, y: -0.00084994826, z: 0.795696, w: 0.114429496}
+      scale: {x: 0.99999464, y: 1.0000079, z: 0.9999977}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -660,7 +1014,7 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: body1
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2

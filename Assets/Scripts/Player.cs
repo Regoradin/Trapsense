@@ -29,6 +29,7 @@ public class Player : MonoBehaviour {
 	public delegate void Tick(string input);
 	public event Tick PlayerTickEvent;
 
+	[Header("UI")]
 	public Slider health_bar;	
 	public GameObject death_ui;
 	public Text score_text;
@@ -39,16 +40,22 @@ public class Player : MonoBehaviour {
 	public GameObject pause_ui;
 	public static bool paused = false;
 
-	public AnimationClip idle_clip;
-
+	[Header("Animation")]
+	public List<AnimationClip> idle_clips;
 	public GameObject head_bone;
 
+	public float mirror_duration;
+	private float mirror_start_time;
+	private float mirror_target = 0;
+
+	[Header("Difficulty")]
 	public int best_score_lin_increase;
 	public int total_score_geom_increase;
 	private int unadded_progress; //tracks progress that hasn't been added to the total score in PlayerPrefs yet.	
 
 	public Dictionary<GameObject, int> hat_dict;
 
+	[Header("Audio")]
 	private bool left_step = false;
 	public AudioSource damage_sound;
 	public AudioSource left_foot;
@@ -102,6 +109,19 @@ public class Player : MonoBehaviour {
 				Move(move_buffer);
 			}
 		}
+
+		if (Input.GetButtonDown("Space"))
+		{
+			float mirror = 1 - anim.GetFloat("Mirror");
+			Debug.Log("MIRRORING to " + mirror);
+			mirror_target = mirror;
+			mirror_start_time = Time.time;
+		}
+
+		if (!anim.GetFloat("Mirror").Equals(mirror_target))
+		{
+			anim.SetFloat("Mirror", Mathf.Lerp(1 - mirror_target, mirror_target, (Time.time - mirror_start_time) / mirror_duration));
+		}
 	}
 
 	//Soley exists to make events happy.
@@ -113,7 +133,7 @@ public class Player : MonoBehaviour {
 	public void Move(string input, bool damaging = false)
 	{
 		//prevents processing of move inputs while an animation is playing
-		if (damaging || anim.GetCurrentAnimatorClipInfo(0)[0].clip == idle_clip)
+		if (damaging || idle_clips.Contains(anim.GetCurrentAnimatorClipInfo(0)[0].clip))
 		{
 			move_buffer = "";
 
@@ -183,7 +203,6 @@ public class Player : MonoBehaviour {
 		}
 		else if((1 - anim.GetCurrentAnimatorStateInfo(0).normalizedTime % 1) <= buffer_leniency)
 		{
-			Debug.Log("buffering");
 			move_buffer = input;
 		}
 	}

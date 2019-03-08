@@ -906,7 +906,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 422741325}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.25, y: 0, z: 0.009}
+  m_LocalPosition: {x: -0.29, y: -0, z: -0.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1010856728}
@@ -2494,8 +2494,11 @@ MonoBehaviour:
   total_score_text: {fileID: 226377118}
   total_goal_text: {fileID: 1732058230}
   pause_ui: {fileID: 1472004673}
-  idle_clip: {fileID: 7400008, guid: 6390a04c5c64f614d81784102ed9d633, type: 3}
+  idle_clips:
+  - {fileID: 7400008, guid: 6390a04c5c64f614d81784102ed9d633, type: 3}
+  - {fileID: 7400024, guid: 6390a04c5c64f614d81784102ed9d633, type: 3}
   head_bone: {fileID: 750270117}
+  mirror_duration: 0.24
   best_score_lin_increase: 30
   total_score_geom_increase: 10
   damage_sound: {fileID: 724593031}
