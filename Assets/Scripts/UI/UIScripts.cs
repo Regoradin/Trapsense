@@ -27,5 +27,6 @@ public class UIScripts : MonoBehaviour
 	public void ResetPlayerPrefs()
 	{
 		PlayerPrefs.DeleteAll();
+		PlayerPrefs.SetInt("hat", -1);
 	}
 }
