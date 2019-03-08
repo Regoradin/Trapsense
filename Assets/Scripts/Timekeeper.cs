@@ -6,9 +6,6 @@ public class Timekeeper : MonoBehaviour {
 
 	public static Timekeeper timekeeper;
 
-	public float min_delay;
-	private bool waiting = false;
-
 	public delegate void Tick(string input);
 	public event Tick TickEvent;
 
@@ -20,7 +17,7 @@ public class Timekeeper : MonoBehaviour {
 
 	private void Update()
 	{
-		if (!waiting && !Player.paused)
+		if (!Player.paused)
 		{
 			if (TickEvent != null)
 			{
@@ -54,16 +51,9 @@ public class Timekeeper : MonoBehaviour {
 	/// <param name="input"></param>
 	public void CreateTick(string input)
 	{
-		waiting = true;
-		Invoke("StopWaiting", min_delay);
 		TickEvent(input);
-
 	}
 
-	private void StopWaiting()
-	{
-		waiting = false;
-	}
 
 	private void TickDebugger(string input)
 	{

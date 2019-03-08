@@ -2486,6 +2486,7 @@ MonoBehaviour:
   progress: -1
   max_progress: 0
   trap_gen: {fileID: 1479238785}
+  buffer_leniency: 0.3
   health_bar: {fileID: 952700499}
   death_ui: {fileID: 1043886309}
   score_text: {fileID: 590614333}
@@ -2564,7 +2565,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ea8b75f8297c194b9d01a948c32698f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  min_delay: 0.6
 --- !u!4 &1024149793
 Transform:
   m_ObjectHideFlags: 0

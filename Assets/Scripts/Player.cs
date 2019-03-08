@@ -22,6 +22,10 @@ public class Player : MonoBehaviour {
 
 	private int horizontal_coord = 4; //This is based off the starting position of the player relative to the corridor generation, and will almost certainly need to be changed
 
+	[Range(0, 1)]
+	public float buffer_leniency;
+	private string move_buffer;
+
 	public delegate void Tick(string input);
 	public event Tick PlayerTickEvent;
 
@@ -91,6 +95,13 @@ public class Player : MonoBehaviour {
 		{
 			Pause(!Player.paused);
 		}
+		else
+		{
+			if(move_buffer != "")
+			{
+				Move(move_buffer);
+			}
+		}
 	}
 
 	//Soley exists to make events happy.
@@ -102,8 +113,9 @@ public class Player : MonoBehaviour {
 	public void Move(string input, bool damaging = false)
 	{
 		//prevents processing of move inputs while an animation is playing
-		if (anim.GetCurrentAnimatorClipInfo(0)[0].clip == idle_clip)
+		if (damaging || anim.GetCurrentAnimatorClipInfo(0)[0].clip == idle_clip)
 		{
+			move_buffer = "";
 
 			bool is_valid_move = true;
 
@@ -168,6 +180,11 @@ public class Player : MonoBehaviour {
 			{
 				EndMove();
 			}
+		}
+		else if((1 - anim.GetCurrentAnimatorStateInfo(0).normalizedTime % 1) <= buffer_leniency)
+		{
+			Debug.Log("buffering");
+			move_buffer = input;
 		}
 	}
 
