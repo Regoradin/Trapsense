@@ -6,7 +6,7 @@ public class Timekeeper : MonoBehaviour {
 
 	public static Timekeeper timekeeper;
 
-	public delegate void Tick(string input);
+	public delegate void Tick(string input, float mirror);
 	public event Tick TickEvent;
 
 	private void Awake()
@@ -21,25 +21,41 @@ public class Timekeeper : MonoBehaviour {
 		{
 			if (TickEvent != null)
 			{
-				if (Input.GetButtonDown("Forward"))
+				if (Input.GetButtonDown("LeftForward"))
 				{
-					CreateTick("Forward");
+					CreateTick("Forward", 0);
 				}
-				else if (Input.GetButtonDown("Back"))
+				else if (Input.GetButtonDown("RightForward"))
 				{
-					CreateTick("Back");
+					CreateTick("Forward", 1);
 				}
-				else if (Input.GetButtonDown("Right"))
+				else if (Input.GetButtonDown("LeftBack"))
 				{
-					CreateTick("Right");
+					CreateTick("Back", 0);
 				}
-				else if (Input.GetButtonDown("Left"))
+				else if (Input.GetButtonDown("RightBack"))
 				{
-					CreateTick("Left");
+					CreateTick("Back", 1);
+				}
+				else if (Input.GetButtonDown("LeftRight"))
+				{
+					CreateTick("Right", 0);
+				}
+				else if (Input.GetButtonDown("RightRight"))
+				{
+					CreateTick("Right", 1);
+				}
+				else if (Input.GetButtonDown("LeftLeft"))
+				{
+					CreateTick("Left", 0);
+				}
+				else if (Input.GetButtonDown("RightLeft"))
+				{
+					CreateTick("Left", 1);
 				}
 				else if (Input.GetButtonDown("Space"))
 				{
-					CreateTick("Wait");
+					CreateTick("Wait", 0);
 				}
 			}
 		}
@@ -49,13 +65,13 @@ public class Timekeeper : MonoBehaviour {
 	/// Creates a tick event with the given input. Should be used with great caution.
 	/// </summary>
 	/// <param name="input"></param>
-	public void CreateTick(string input)
+	public void CreateTick(string input, float mirror)
 	{
-		TickEvent(input);
+		TickEvent(input, mirror);
 	}
 
 
-	private void TickDebugger(string input)
+	private void TickDebugger(string input, float mirror)
 	{
 
 	}

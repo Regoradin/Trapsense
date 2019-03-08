@@ -110,14 +110,6 @@ public class Player : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetButtonDown("Space"))
-		{
-			float mirror = 1 - anim.GetFloat("Mirror");
-			Debug.Log("MIRRORING to " + mirror);
-			mirror_target = mirror;
-			mirror_start_time = Time.time;
-		}
-
 		if (!anim.GetFloat("Mirror").Equals(mirror_target))
 		{
 			anim.SetFloat("Mirror", Mathf.Lerp(1 - mirror_target, mirror_target, (Time.time - mirror_start_time) / mirror_duration));
@@ -125,17 +117,19 @@ public class Player : MonoBehaviour {
 	}
 
 	//Soley exists to make events happy.
-	public void Move(string input)
+	public void Move(string input, float mirror)
 	{
-		Move(input, false);
+		Move(input, false, mirror);
 	}
 
-	public void Move(string input, bool damaging = false)
+	public void Move(string input, bool damaging = false, float mirror = 0)
 	{
 		//prevents processing of move inputs while an animation is playing
 		if (damaging || idle_clips.Contains(anim.GetCurrentAnimatorClipInfo(0)[0].clip))
 		{
 			move_buffer = "";
+			mirror_target = mirror;
+			mirror_start_time = Time.time;
 
 			bool is_valid_move = true;
 
