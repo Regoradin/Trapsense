@@ -39,7 +39,6 @@ public class AnimSpeedManager : MonoBehaviour
 	private void Update()
 	{
 		float speed = anim_speed_over_time.Evaluate(Time.time - start_time);
-		Debug.Log(speed);
 		SetAnimSpeed(speed);
 	}
 
