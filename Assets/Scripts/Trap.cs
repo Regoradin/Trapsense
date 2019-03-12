@@ -52,6 +52,8 @@ public class Trap : MonoBehaviour {
 		Player.player.PlayerTickEvent += Tick;
 		anim = GetComponent<Animator>();
 		RandomizeState();
+
+		AnimSpeedManager.instance.RegisterAnimator(anim);
 	}
 
 	private void Tick(string input)

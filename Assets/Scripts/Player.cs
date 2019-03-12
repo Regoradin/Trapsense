@@ -25,6 +25,7 @@ public class Player : MonoBehaviour {
 	[Range(0, 1)]
 	public float buffer_leniency;
 	private string move_buffer;
+	private float mirror_buffer;
 
 	public delegate void Tick(string input);
 	public event Tick PlayerTickEvent;
@@ -82,6 +83,8 @@ public class Player : MonoBehaviour {
 		Pause(false);
 		SetHat();
 
+		AnimSpeedManager.instance.RegisterAnimator(anim);
+
 	}
 
 	public void Pause(bool input)
@@ -106,7 +109,7 @@ public class Player : MonoBehaviour {
 		{
 			if(move_buffer != "")
 			{
-				Move(move_buffer);
+				Move(move_buffer, mirror_buffer);
 			}
 		}
 
@@ -198,6 +201,7 @@ public class Player : MonoBehaviour {
 		else if((1 - anim.GetCurrentAnimatorStateInfo(0).normalizedTime % 1) <= buffer_leniency)
 		{
 			move_buffer = input;
+			mirror_buffer = mirror;
 		}
 	}
 
@@ -243,17 +247,25 @@ public class Player : MonoBehaviour {
 
 	private void SetHat()
 	{
-		int index = PlayerPrefs.GetInt("Hat", -1);
-		bool use_total_hat = PlayerPrefs.GetInt("UseTotalHat") == 1 ? true : false;
-		if (index != -1) {
-			if (use_total_hat)
+		try
+		{
+			int index = PlayerPrefs.GetInt("Hat", -1);
+			bool use_total_hat = PlayerPrefs.GetInt("UseTotalHat") == 1 ? true : false;
+			if (index != -1)
 			{
-				GameObject hat = Instantiate(HatUnlockManager.hat_manager.total_hats[index], head_bone.transform);
+				if (use_total_hat)
+				{
+					GameObject hat = Instantiate(HatUnlockManager.hat_manager.total_hats[index], head_bone.transform);
+				}
+				else
+				{
+					GameObject hat = Instantiate(HatUnlockManager.hat_manager.best_hats[index], head_bone.transform);
+				}
 			}
-			else
-			{
-				GameObject hat = Instantiate(HatUnlockManager.hat_manager.best_hats[index], head_bone.transform);
-			}
+		}
+		catch
+		{
+			Debug.Log("No hat equiped");
 		}
 	}
 
