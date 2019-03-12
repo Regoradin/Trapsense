@@ -23,29 +23,12 @@ public class TrapsGenerator : MonoBehaviour {
 
 
 	[Header("Difficulty Settings")]
-	[Header("Traps")]
-	[Range(0, 1)]
-	public float flat_trap_density;
-	public bool trap_density_log_scaling;
-	[Range(0,1)]
-	public float initial_trap_density;
-	[Range(0,1)]
-	public float final_trap_density;
-	public float trap_difficulty_scaling_factor;  //affects how dramatically the logistic difficulty function ramps
-	public int trap_density_corridor_iterations;  //affects the length over which the logistic difficulty function has the desired effect
+	private int iterations;
+	[HideInInspector]
+	public AnimationCurve trap_density_per_distance_curve;
+	[HideInInspector]
+	public AnimationCurve pickup_density_per_distance_curve;
 
-	[Header("Pickups")]
-	[Range(0, 1)]
-	public float flat_pickup_density;
-	public bool pickup_density_log_scaling;
-	[Range(0, 1)]
-	public float initial_pickup_density;
-	[Range(0, 1)]
-	public float final_pickup_density;
-	public float pickup_density_scaling_factor;
-	public int pickup_density_corridor_iterations;
-
-	private int iterations = 0;
 
 
 	private void Start()
@@ -116,26 +99,10 @@ public class TrapsGenerator : MonoBehaviour {
 	/// <param name="offset">Distance forward from the origin in spaces</param>
 	public void CreateCorridor(int offset = 0)
 	{
-		float trap_density = -1;
-		if (trap_density_log_scaling)
-		{
-			trap_density = LogisticDifficultyCalcs(iterations, initial_trap_density, final_trap_density, trap_difficulty_scaling_factor, trap_density_corridor_iterations);
-			iterations++;
-		}
-		else
-		{
-			trap_density = flat_trap_density;
-		}
+		iterations++;
+		float trap_density = trap_density_per_distance_curve.Evaluate(iterations * corridor_height);
+		float pickup_density = pickup_density_per_distance_curve.Evaluate(iterations * corridor_height);
 
-		float pickup_density = -1;
-		if (pickup_density_log_scaling)
-		{
-			pickup_density = LogisticDifficultyCalcs(iterations, initial_pickup_density, final_pickup_density, pickup_density_scaling_factor, pickup_density_corridor_iterations);
-		}
-		else
-		{
-			pickup_density = flat_pickup_density;
-		}
 		pickup_gen.CreateCorridor(corridor_height, corridor_width, offset, pickup_density);
 
 

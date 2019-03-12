@@ -271,6 +271,7 @@ public class Player : MonoBehaviour {
 
 	public void Die()
 	{
+		paused = true; //Doesn't call the Pause() function because we don't want the actual pause menu coming up.
 		UpdateScores();
 
 		int total_score = PlayerPrefs.GetInt("TotalScore");

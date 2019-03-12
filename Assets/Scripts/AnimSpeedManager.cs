@@ -8,16 +8,16 @@ public class AnimSpeedManager : MonoBehaviour
 	public static AnimSpeedManager instance;
 	private List<Animator> anims;
 
-	public float init_speed;
-	public float final_speed;
-	public float duration;
-
-	public float speed;
+	[HideInInspector]
+	public AnimationCurve anim_speed_over_time;
+	private float start_time;
 
 	private void Awake()
 	{
 		instance = this;
 		anims = new List<Animator>();
+
+		start_time = Time.time;
 	}
 
 	public void RegisterAnimator(Animator anim)
@@ -38,8 +38,8 @@ public class AnimSpeedManager : MonoBehaviour
 
 	private void Update()
 	{
-		speed = Mathf.Lerp(init_speed, final_speed, Time.time / duration);
-
+		float speed = anim_speed_over_time.Evaluate(Time.time - start_time);
+		Debug.Log(speed);
 		SetAnimSpeed(speed);
 	}
 

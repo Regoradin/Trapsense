@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\Activator.cs" />
     <Compile Include="Assets\Scripts\AnimSpeedManager.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\DifficultyCurves.cs" />
     <Compile Include="Assets\Scripts\HatUnlockManager.cs" />
     <Compile Include="Assets\Scripts\Pickup.cs" />
     <Compile Include="Assets\Scripts\PickupGenerator.cs" />

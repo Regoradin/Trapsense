@@ -637,6 +637,123 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: total
+--- !u!1 &288109326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 288109328}
+  - component: {fileID: 288109327}
+  m_Layer: 0
+  m_Name: DifficultyCurves
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &288109327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288109326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 154f464cc3424324a9934363d480e128, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trap_gen: {fileID: 1479238785}
+  trap_density_over_distance:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.005
+      outSlope: 0.005
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 200
+      value: 1
+      inSlope: 0.005
+      outSlope: 0.005
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  pickup_density_over_distance:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.06
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 200
+      value: 0.03
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  anim_speed: {fileID: 1024149794}
+  anim_speed_over_time:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0.004716145
+      outSlope: 0.004716145
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.14002478
+    - serializedVersion: 3
+      time: 200
+      value: 5
+      inSlope: 0.03806607
+      outSlope: 0.03806607
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.050805435
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &288109328
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288109326}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.129883, y: 4.604492, z: 10.60791}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &362781188
 GameObject:
   m_ObjectHideFlags: 0
@@ -2595,10 +2712,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0d1dc1e2a3385d4ba1a0f9e38ffa188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  init_speed: 1
-  final_speed: 7
-  duration: 120
-  speed: 1
+  anim_speed_over_time:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1043886309
 GameObject:
   m_ObjectHideFlags: 0
@@ -3477,18 +3596,54 @@ MonoBehaviour:
   - {fileID: 1458579881953869625, guid: 9bf2dd7900f48df45a0f2e3242f1e927, type: 3}
   - {fileID: 8694128109159690166, guid: 9e7da0633693ee5489f1aae31e6cf309, type: 3}
   - {fileID: 7076976827745447928, guid: 33ef87c547ffbf24d805fd5e9f4cbc59, type: 3}
-  flat_trap_density: 0
-  trap_density_log_scaling: 1
-  initial_trap_density: 0.3
-  final_trap_density: 0.75
-  trap_difficulty_scaling_factor: 0.7
-  trap_density_corridor_iterations: 20
-  flat_pickup_density: 0.02
-  pickup_density_log_scaling: 1
-  initial_pickup_density: 0.03
-  final_pickup_density: 0.002
-  pickup_density_scaling_factor: 1.5
-  pickup_density_corridor_iterations: 8
+  trap_density_per_distance_curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.3
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 200
+      value: 0.6
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  pickup_density_per_distance_curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.06
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 200
+      value: 0.03
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &1479238786
 Transform:
   m_ObjectHideFlags: 0
