@@ -32,7 +32,14 @@ public class AnimSpeedManager : MonoBehaviour
 	{
 		foreach(Animator anim in anims)
 		{
-			anim.speed = speed;
+			if (anim != null)
+			{
+				anim.speed = speed;
+			}
+			else
+			{
+				anims.Remove(anim);
+			}
 		}
 	}
 

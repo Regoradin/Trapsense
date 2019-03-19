@@ -37,6 +37,16 @@ public class DeathWall : MonoBehaviour
 		}
 	}
 
+	private void OnTriggerExit(Collider other)
+	{
+		Transform top_transform = other.transform;
+		while(top_transform.parent != null)
+		{
+			top_transform = top_transform.parent;
+		}
+		Destroy(top_transform.gameObject);
+	}
+
 	private void Update()
 	{
 		float speed = speed_over_time.Evaluate(Time.time - start_time);
