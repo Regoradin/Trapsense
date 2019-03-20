@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\BonfireFlicker.cs" />
+    <Compile Include="Assets\Scripts\Acid.cs" />
     <Compile Include="Assets\Scripts\Activator.cs" />
     <Compile Include="Assets\Scripts\AnimSpeedManager.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
