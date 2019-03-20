@@ -28,7 +28,7 @@ public class Torch : MonoBehaviour
 		torch = GetComponentInChildren<Light>();
 
 		noise = new Cubemap(noise_width, TextureFormat.Alpha8, false);
-		torch.cookie = noise;
+		//torch.cookie = noise;
 
 		pix = new Color[noise_height * noise_width];
 
