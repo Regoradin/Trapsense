@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb623490f4c827d4d8f8e66cf282987a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stain_color: {r: 0, g: 0.2, b: 0, a: 0}
+  stain_color: {r: 0, g: 0.1, b: 0, a: 0}
 --- !u!54 &1475860236559500928
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -167,7 +167,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ea570e5969dfa2b4ca300376b09a088d, type: 2}
+  - {fileID: 2100000, guid: cb5a5df304f49d7428b35e55a594d43b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
