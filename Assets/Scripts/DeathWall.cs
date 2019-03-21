@@ -39,12 +39,16 @@ public class DeathWall : MonoBehaviour
 
 	private void OnTriggerExit(Collider other)
 	{
-		Transform top_transform = other.transform;
-		while(top_transform.parent != null)
+		Player player = other.GetComponent<Player>();
+		if (player == null)
 		{
-			top_transform = top_transform.parent;
+			Transform top_transform = other.transform;
+			while (top_transform.parent != null)
+			{
+				top_transform = top_transform.parent;
+			}
+			Destroy(top_transform.gameObject);
 		}
-		Destroy(top_transform.gameObject);
 	}
 
 	private void Update()
